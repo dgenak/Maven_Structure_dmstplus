@@ -1,14 +1,19 @@
-import java.util.Scanner;
+import java.util.List;
 public class User {
-        // Δημιουργία ενός αντικειμένου Scanner
-    Scanner scanner = new Scanner(System.in); 
-    public String foreignLanguages;
-    public int referredPeriod;
-        // Ρωτάει και διαβάζει τις ξένες γλώσσες που γνωρίζει ο φοιτητής
-    System.out.println("Ποιές ξένες γλώσσες γνωρίζεις;");
-    String foreignLanguage = scanner.nextLine();
-        // Ρωτάει και διαβάζει τη περίοδο που προτιμάει να πάει ο φοιτητής (Χειμερινή περίοδο ή Εαρινή περίοδο) 
-    System.out.println("Ποιά περίοδο θα προτιμούσες να πας: ΧΕΙΜΕΡΙΝΗ(1) ή ΕΑΡΙΝΗ(2);");
-    Int preferredPeriod = scanner.nextLine();
+    private List<String> languages;
+    private String preferredPeriod;
+    private String preferredCountry;
+    private double maxMonthlyCost;
+    private boolean SharedAccomondation;
+    
+    // Δημιουργία κατασκευαστή της User 
+    public User(List<String> languages, preferredPeriod, preferredCountry, maxMonthlyCost, SharedAccomondation) {
+        this.languages = languages;
+        this.preferredPeriod = preferredPeriod;
+        this.preferredCountry = preferredCountry;
+        this.maxMonthlyCost = maxMonthlyCost;
+        this.SharedAccomondation = SharedAccomondation;
+    }
+    // TODO Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε αντικείμενο που δηλώσαμε στον κατασκευαστή
     
 }
