@@ -1,3 +1,5 @@
+package com.dmstplus;
+
 public class University {
     private String uniName;
     // Οι τιμές των μεταβλητών monthlyCost, CostWithSh_Accommondation είναι ο μέσος όρος που υπολογίσαμε απο τα δεδομένα μας

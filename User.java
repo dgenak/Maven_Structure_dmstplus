@@ -1,3 +1,5 @@
+package com.dmstplus;
+
 import java.util.List;
 public class User {
     private List<String> languages;
