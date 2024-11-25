@@ -3,13 +3,13 @@ package com.dmstplus
 import java.util.ArrayList;
 import java.util.List;
 
-public class Database {
+public class UniData {
     
     // Δημιουργία της λίστας των πανεπιστημίων και των στατικών πληροφοριών τους
     private List<University> universities = new ArrayList<>();
 
     // Εκχώρηση των πληροφοριών στη βάση δεδομένων
-    public Database() {
+    public UniData() {
         universities.add(new University(1, "Hasselt University", "Belgium", "Hasselt", 1000, 500.0, "French", "Spring"));
         universities.add(new University(2, "University of Antwerpen", "Belgium", "Antwerp", 1050, 550.0, "French", "Spring"));
         universities.add(new University(3, "University of Cyprus", "Cyprus", "Nicosia", 850, 350.0, "Greek", "Spring"));
@@ -55,7 +55,7 @@ public class Database {
         universities.add(new University(43, "Sodertorn University", "Sweden", "Kristianstad", 1000, 500.0, "Swedish", "Spring"));
     }
     
-    public List<University> letsgoersm(User user) {
+    public List<University> letsGoErasmus(User user) {
         // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
         List<University> uni_match = new ArrayList<>();
 
