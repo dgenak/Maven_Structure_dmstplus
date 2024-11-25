@@ -1,19 +1,40 @@
+package com.dmstplus
+
 import java.util.List;
+
 public class User {
-    private List<String> Userslanguages;
+    private List<String> userslanguages;
     private String preferredPeriod;
     private String preferredCountry;
     private double maxMonthlyCost;
-    private boolean SharedAccomondation;
+    private boolean sharedAccomondation;
     
     // Δημιουργία κατασκευαστή της User 
-    public User(List<String> Userslanguages, preferredPeriod, preferredCountry, maxMonthlyCost, SharedAccomondation) {
-        this.Userslanguages = Userslanguages;
+    public User(List<String> userslanguages, preferredPeriod, preferredCountry, maxMonthlyCost, SharedAccomondation) {
+        this.userslanguages = userslanguages;
         this.preferredPeriod = preferredPeriod;
         this.preferredCountry = preferredCountry;
         this.maxMonthlyCost = maxMonthlyCost;
-        this.SharedAccomondation = SharedAccomondation;
+        this.sharedAccomondation = sharedAccomondation;
     }
-    // TODO Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε όρισμα του κατασκευαστή
     
+    public List<String> getuserslanguages() {
+        return userslanguages;
+    }
+
+    public String getpreferredPeriod() {
+        return preferredPeriod;
+    }
+
+    public String getpreferredCountry() {
+        return preferredCountry;
+    }
+
+    public double getmaxMonthlyCost() {
+        return maxMonthlyCost;
+    }
+
+    public boolean getsharedAccomondation() {
+        return sharedAccomondation;
+    }
 }

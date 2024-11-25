@@ -1,10 +1,13 @@
+package com.dmstplus
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
+    
     // Δημιουργία της λίστας των πανεπιστημίων και των στατικών πληροφοριών τους
     private List<University> universities = new ArrayList<>();
+
     // Εκχώρηση των πληροφοριών στη βάση δεδομένων
     public Database() {
         universities.add(new University(1, "Hasselt University", "Belgium", "Hasselt", 1000, 500.0, "French", "Spring"));
@@ -50,5 +53,45 @@ public class Database {
         universities.add(new University(41, "Linnaeus University", "Sweden", "Vaxjo", 1000, 500.0, "Swedish", "Spring"));
         universities.add(new University(42, "Kristianstad University", "Sweden", "Kalmar", 1000, null, "Swedish", "Spring"));
         universities.add(new University(43, "Sodertorn University", "Sweden", "Kristianstad", 1000, 500.0, "Swedish", "Spring"));
+    }
+    
+    public List<University> letsgoersm(User user) {
+        // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
+        List<University> uni_match = new ArrayList<>();
+
+        for (University university : universities) {
+            int pl = 0;
+
+            // Εδώ ελέγχουμε αν ο user γνωρίζει τη γλώσσα της συγκεκριμένης χώρας
+            if (user.getuserslanguages().contains(university.getcountrysLanguage())) {
+                pl = pl + 1;
+            }
+
+            // Εδώ ελέγχουμε αν το συγκεκριμένο πανεπιστήμιο βρίσκεται στη χώρα που επιθυμεί ο user
+            if ( user.getpreferredCountry().equals(university.getcountry())) {
+                pl = pl + 1;
+            }
+
+            if (university.getSharedAccomondation()) {
+                // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής (με συγκατοίκηση) της συγκεκριμένης πόλης 
+                if ((university.getcostWithSh_Accommondation() != null) && (user.getmaxMonthlyCost() <= university.getcostWithSh_Accommondation())) {
+                    pl = pl + 1
+                }
+            } else {
+                // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής της συγκεκριμένης πόλης 
+                if (user.getmaxMonthlyCost() <= university.getmonthlyCost()) {
+                    pl = pl + 1;
+                }
+            }
+
+            // Δεν χρειάζεται να ελέγχουμε κάθε στήλη της λίστας αν θα επιστρέψει null
+            // γιατί ξέρουμε απο την βάση δεδομένων πως μόνο στη στήλη "costWithSh_Accommondation" υπάρχουν null τιμές 
+
+            // Τέλος αν το πανεπιστήμιο πληρεί τις προϋποθέσεις του user τότε το αποθηκεύουμε στη λίστα uni_match
+            if (pl = 3) {
+                uni_match.add(university);
+            }
+            return uni_match;
+        }
     }
 }
