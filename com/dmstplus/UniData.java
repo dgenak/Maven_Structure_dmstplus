@@ -1,4 +1,4 @@
-package com.dmstplus
+package com.dmstplus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class UniData {
             if (university.getSharedAccomondation()) {
                 // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής (με συγκατοίκηση) της συγκεκριμένης πόλης 
                 if ((university.getcostWithSh_Accommondation() != null) && (user.getmaxMonthlyCost() <= university.getcostWithSh_Accommondation())) {
-                    pl = pl + 1
+                    pl = pl + 1;
                 }
             } else {
                 // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής της συγκεκριμένης πόλης 

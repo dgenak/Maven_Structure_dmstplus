@@ -1,4 +1,4 @@
-package com.dmstplus
+package com.dmstplus;
 
 public class University {
     private String uniName;

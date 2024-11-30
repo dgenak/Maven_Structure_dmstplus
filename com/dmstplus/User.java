@@ -1,4 +1,4 @@
-package com.dmstplus
+package com.dmstplus;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class User {
     private boolean sharedAccomondation;
     
     // Δημιουργία κατασκευαστή της User 
-    public User(List<String> userslanguages, preferredPeriod, preferredCountry, maxMonthlyCost, SharedAccomondation) {
+    public User(List<String> userslanguages, preferredPeriod, preferredCountry, double maxMonthlyCost, boolean SharedAccomondation) {
         this.userslanguages = userslanguages;
         this.preferredPeriod = preferredPeriod;
         this.preferredCountry = preferredCountry;
