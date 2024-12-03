@@ -17,6 +17,18 @@ public class App {
         * 1. Εκτύπωση του μηνύματος: "Choose which period you prefer to go: Spring, Winter"
         * 2. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην μεταβλητή τύπου String uperiod
         */
+        //Εκτυπωση μηνυματος για την επιλογη περιοδου
+        System.out.println("Choose which period you prefer to go");
+        System.out.println("Spring,Winter");
+        //Δημιουργια αντικειμενου Scanner για την αναγνωση της απαντησης του χρηστη
+        Scanner scanner = new Scanner(System.in);
+        //Αναγνωση της επιλογης του χρσητη και εκχωριση στην μεταβλητη uperiod
+        String uperiod = scanner.nextLine();
+        //Εμφανιση της επιλογης του χρηστη
+        System.out.println("You chose:" + uperiod);
+        //Κλεισιμο του scanner 
+        scanner.close();
+    }
 
         /*
         * TODO #2 Εδώ θα εκχωρίσουμε τη προτίμηση του user ως προς την χώρα:
