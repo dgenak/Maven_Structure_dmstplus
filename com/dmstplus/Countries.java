@@ -1,4 +1,4 @@
-public package test.java;
+package test.java;
 
 public class Countries {
     private String country;

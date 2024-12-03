@@ -9,7 +9,7 @@ import java.util.Scanner;
 // δημιουργια μιας λιστας με τα μηνιαια κόστοι
 public class App extends Application {
     public void start(Stage primaryStage) {
-        Label label = new Label("Γεια σου ρε μητσάρα");
+        Label label = new Label("Γεια σου");
         Scene scene = new Scene(label, 300, 200);
 
         primaryStage.setTitle("DMST+");
