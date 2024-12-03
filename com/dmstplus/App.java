@@ -20,11 +20,11 @@ public class App extends Application {
 
         launch(args);
         
-        private String uperiod;
-        private String ucountry;
-        private double maxcost;
-        private String answer;
-        private Boolean sharedaccom;
+        final String uperiod;
+        final String ucountry;
+        final double maxcost;
+        final String answer;
+        final Boolean sharedaccom;
 
         /*
         * TODO #1 Εδώ θα εκχωρίσουμε τη προτίμηση του user ως προς την περίοδο:
