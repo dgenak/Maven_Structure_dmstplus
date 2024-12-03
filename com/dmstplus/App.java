@@ -1,10 +1,24 @@
 package com.dmstplus;
-
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import java.util.Arrays;
 import java.util.Scanner;
+
 // δημιουργια μιας λιστας με τα μηνιαια κόστοι
-public class App {
+public class App extends Application {
+    public void start(Stage primaryStage) {
+        Label label = new Label("Γεια σου ρε μητσάρα");
+        Scene scene = new Scene(label, 300, 200);
+
+        primaryStage.setTitle("DMST+");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
     public static void main(String[] args) {
+
+        launch(args);
         
         private String uperiod;
         private String ucountry;
