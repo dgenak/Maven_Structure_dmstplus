@@ -43,7 +43,7 @@ public class App extends Application {
         }
         //Δημιουργια Scanner για την αναγνωση της επιλογης του χρηστη
         Scanner scanner = new Scanner(System.in);
-        String uncountry = scanner.nextInt();
+        String uncountry = scanner.nextLine();
         scanner.close();
         //Εκτυπωση της επιλεγμενης χωρας
         System.out.println("You have chosen:" + uncountry);
@@ -73,5 +73,27 @@ public class App extends Application {
         } else {
             sharedaccom = false;
         }
+
+        scanner.close();
+        /*
+        * TODO #5
+        * Εδώ θα εκχωρίσουμε την επιλογή του user ως προς τις γλώσσες που γνωρίζει
+        * 1. Εκτύπωση του μηνύματος: "What languages ​​do you know?"
+        * 2. Εκτύπωση της λίστας languages
+        * 3. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην λίστα τύπου String ulang
+        */
+        //Κληση της λιστας Languages
+        List<String> languages = UniData.getlanguages();
+        //Εκτυπωσης μηνυματος
+        System.out.println("What languages do you speak");
+        //Εκτυπωση λιστας
+        for (String language : languages) {
+            System.out.println("- " + language);
+        }
+        String ulang;
+        Scanner scanner = new scanner(System.in);
+        String ulang = scanner.nextLine();
+        System.out.println("You chose" + ulang);
+        scanner.close();
     }
 }
