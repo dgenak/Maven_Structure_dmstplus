@@ -39,7 +39,7 @@ public class App extends Application {
         System.out.println("choose which country you would like to go to");
         System.out.println("Here are the countries you can go");
         for (String country : countries) {
-            Sysem.out.println("- " + country);
+            System.out.println("- " + country);
         }
         //Δημιουργια Scanner για την αναγνωση της επιλογης του χρηστη
         Scanner scanner = new Scanner(System.in);
