@@ -1,7 +1,7 @@
-package test.java;
+package com.dmstplus;
 
 public class Countries {
-    private String country;
+    public String country;
 
     public Countries(String country) {
         this.country = country;
