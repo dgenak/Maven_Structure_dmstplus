@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 // δημιουργια μιας λιστας με τα μηνιαια κόστοι
@@ -26,40 +27,51 @@ public class App extends Application {
         final String answer;
         final Boolean sharedaccom;
 
-        /*
-        * TODO #1 Εδώ θα εκχωρίσουμε τη προτίμηση του user ως προς την περίοδο:
-        * 1. Εκτύπωση του μηνύματος: "Choose which period you prefer to go: Spring, Winter"
-        * 2. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην μεταβλητή τύπου String uperiod
-        */
+        System.out.println("Choose which period you prefer to go");
+        System.out.println("Spring,Winter");
+        Scanner scanner = new Scanner(System.in);
+        //Αναγνωση της επιλογης του χρσητη και εκχωριση στην μεταβλητη uperiod
+        String uperiod = scanner.nextLine();
+        System.out.println("You chose:" + uperiod);
+        scanner.close();
 
-        /*
-        * TODO #2 Εδώ θα εκχωρίσουμε τη προτίμηση του user ως προς την χώρα:
-        * 1. Εκτύπωση του μηνύματος: "choose which country you would like to go to"
-        * 2. Εκτύπωση της λίστας countries
-        * 3. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην μεταβλητή τύπου String ucountry
-        */
+        List<String> Countries = Unidata.getcountries();
+        System.out.println("choose which country you would like to go to");
+        System.out.println("Here are the countries you can go");
+        for (String country : countries) {
+            Sysem.out.println("- " + country);
+        }
+        //Δημιουργια Scanner για την αναγνωση της επιλογης του χρηστη
+        Scanner scanner = new Scanner(System.in);
+        String uncountry = scanner.nextInt();
+        scanner.close();
+        //Εκτυπωση της επιλεγμενης χωρας
+        System.out.println("You have chosen:" + uncountry);
 
-        /*
-        * TODO #3 Εδώ θα εκχωρίσουμε το μέγιστο ποσό που είναι διατεθειμένος ο user να ξοδεύει μηνιαίως
-        * 1. Εκτύπωση του μηνύματος: "Set your preferred maximum monthly budget."
-        * 2. Εκτύπωση της λίστας costpermonth
-        * 3. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην μεταβλητή τύπου double maxcost
-        */
+        //Κληση της λιστας costOfLiving
+        List<double> costpermonth = Unidata.getCostOfLiving();
+        //Εκτυπωση της λιστας
+        System.out.println("Here are the the costs per month");
+        for (double cost : costpermonth) {
+            System.out.println("- " + cost);
+        }
+        //Διαβασμα της επιλογης χρηστη
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Set your preferred maximum monthly budget");
+        double maxcost = scanner.nextDouble();
+        System.out.println("Your maximum monthly budget is :" + maxcost);
+        scanner.close();        
 
-        /*
-        * TODO #4 Εδώ θα εκχωρίσουμε την επιλογή του user αν θέλει να συγκατοικήσει ή όχι
-        * 1. Εκτύπωση του μηνύματος: "Would you like to have a roommate?"
-        * 2. Εκτύπωση του μηνύματος: "YES OR NO"
-        * 3. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην μεταβλητή τύπου String answer
-        * 4. Δημιουρία μιας if όπου θα εκχωρεί στην μεταβλητή boolean sharedaccom true αν απάντησε YES και false αν απάντησε NO
-        */
-
-        /*
-        * TODO #5
-        * Εδώ θα εκχωρίσουμε την επιλογή του user ως προς τις γλώσσες που γνωρίζει
-        * 1. Εκτύπωση του μηνύματος: "What languages ​​do you know?"
-        * 2. Εκτύπωση της λίστας languages
-        * 3. Έπειτα διαβάζει την επιλογή του user και την εκχωρεί στην λίστα τύπου String ulang
-        */
+        Scanner scanner = new scanner(System.in);
+        System.out.println("Would you like to have a roomate");
+        System.out.println("YES OR NO");
+        String answer = scanner.next.nextLine;
+        System.out.println("You answered" + answer);
+        boolean sharedaccom;
+        if (answer.equalsIgnoreCase("YES")) {
+            sharedaccom = true;
+        } else {
+            sharedaccom = false;
+        }
     }
 }
