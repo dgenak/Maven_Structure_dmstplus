@@ -1,5 +1,3 @@
-package com.dmstplus;
-
 import org.junit.Test;
 import static org.junit.Assert.*; 
 
@@ -10,9 +8,9 @@ public class UserTest {
     @Test 
     public void testUserCreation() { 
         List<String> languages = Arrays.asList("French", "German"); 
-        User user = new User(languages, "Spring", "Belgium", 1200, true); 
+        com.dmstplus.User user = new com.dmstplus.User(languages, "Spring", "Belgium", 1200, true); 
 
-        assertEquals(languages, user.getUsersLanguages()); 
+        assertEquals(languages, user.getUserslanguages()); 
         assertEquals("Spring", user.getPreferredPeriod()); 
         assertEquals("Belgium", user.getPreferredCountry()); 
         assertEquals(1200, user.getMaxMonthlyCost(), 0); 
