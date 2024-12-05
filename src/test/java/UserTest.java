@@ -8,7 +8,7 @@ public class UserTest {
     @Test 
     public void testUserCreation() { 
         List<String> languages = Arrays.asList("French", "German"); 
-        com.dmstplus.User user = new com.dmstplus.User(languages, "Spring", "Belgium", 1200, true); 
+        com.dmstplus.User user = new com.dmstplus.User(); 
 
         assertEquals(languages, user.getUserslanguages()); 
         assertEquals("Spring", user.getPreferredPeriod()); 
