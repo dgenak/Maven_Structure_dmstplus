@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.Scanner;
 
+
 // δημιουργια μιας λιστας με τα μηνιαια κόστοι
 public class App extends Application {
     public void start(Stage primaryStage) {
