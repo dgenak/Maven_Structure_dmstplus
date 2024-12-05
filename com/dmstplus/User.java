@@ -10,12 +10,12 @@ public class User {
     private boolean sharedAccomondation;
     
     // Δημιουργία κατασκευαστή της User 
-    public User(List<String> userslanguages, String preferredPeriod, String preferredCountry, double maxMonthlyCost, boolean sharedAccomondation) {
-        this.userslanguages = userslanguages;
-        this.preferredPeriod = preferredPeriod;
-        this.preferredCountry = preferredCountry;
-        this.maxMonthlyCost = maxMonthlyCost;
-        this.sharedAccomondation = sharedAccomondation;
+    public User() {
+        this.userslanguages = null;
+        this.preferredPeriod = "";
+        this.preferredCountry = "";
+        this.maxMonthlyCost = 0.0;
+        this.sharedAccomondation = false;
     }
     
     public List<String> getUserslanguages() {
@@ -36,5 +36,25 @@ public class User {
 
     public boolean getSharedAccomondation() {
         return sharedAccomondation;
+    }
+
+    public void setUserslang(List<String> userslanguages) {
+        this.userslanguages = userslanguages;
+    }
+
+    public void setPreferredPeriod(String preferredPeriod) {
+        this.preferredPeriod = preferredPeriod;
+    }
+    
+    public void setPreferredCountry(String preferredCountry) {
+        this.preferredCountry = preferredCountry;
+    }
+    
+    public void setMaxMonthlyCost(double maxMonthlyCost) {
+        this.maxMonthlyCost = maxMonthlyCost;
+    }
+    
+    public void setSharedAccomondation(boolean sharedAccomondation) {
+        this.sharedAccomondation = sharedAccomondation;
     }
 }

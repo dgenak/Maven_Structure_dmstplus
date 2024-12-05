@@ -102,6 +102,14 @@ public class UniData {
         return countryNames;
     }
 
+    public List<String> getLang() {
+        List<String> ulang = new ArrayList<>();
+        for (Languages lang : languages) {
+            ulang.add(lang.getLang());
+        }
+        return ulang;
+    }
+
         // Μέθοδος για να επιστρέψουμε την λίστα των πανεπιστημίων
     public List<University> getUniversities() {
         return universities;
