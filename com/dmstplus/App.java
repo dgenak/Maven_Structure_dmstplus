@@ -2,100 +2,103 @@ package com.dmstplus;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class App extends Application {
 
-    private UniData unidata = new UniData(); // Δημιουργία του αντικειμένου UniData για τη διαχείριση των δεδομένων
+    private UniData unidata = new UniData();
+    private User user = new User();
 
-    @Override
     public void start(Stage primaryStage) {
+        primaryStage.setTitle("DMST+");
 
-        VBox vbox = new VBox(10);
-
-        // Στοιχεία UI
-        Label titleLabel = new Label("Welcome to DMST+ Erasmus App");
-        titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
-
-        // Επιλογή περιόδου
-        Label periodLabel = new Label("Choose which period you prefer to go");
+        // ### PHASE 1
+        Label periodLabel = new Label("Choose which period you prefer to go:");
         ComboBox<String> periodComboBox = new ComboBox<>();
         periodComboBox.getItems().addAll("Spring", "Winter");
+        Button nextButton1 = new Button("Next");
+        VBox phase1Layout = new VBox(10, periodLabel, periodComboBox, nextButton1);
+        Scene scene1 = new Scene(phase1Layout, 300, 200);
 
-        // Επιλογή γλωσσών
-        Label langLabel = new Label("Choose the languages you know");
-        List<String> languages = unidata.getLang();
-        ComboBox<String> languageComboBox = new ComboBox<>();
-        languageComboBox.getItems().addAll(languages);
+        // ### PHASE 2
+        Label langLabel = new Label("Choose the languages you know:");
+        ListView<String> langListView = new ListView<>();
+        langListView.getItems().addAll(unidata.getLang());
+        Button nextButton2 = new Button("Next");
+        VBox phase2Layout = new VBox(10, langLabel, langListView, nextButton2);
+        Scene scene2 = new Scene(phase2Layout, 300, 200);
 
-        // Επιλογή χώρας
-        Label countryLabel = new Label("Choose your preferred country");
-        List<String> countries = unidata.getCountries();
+        // ### PHASE 3
+        Label countryLabel = new Label("Choose which country you would like to go to:");
         ComboBox<String> countryComboBox = new ComboBox<>();
-        countryComboBox.getItems().addAll(countries);
+        countryComboBox.getItems().addAll(unidata.getCountries());
+        Button nextButton3 = new Button("Next");
+        VBox phase3Layout = new VBox(10, countryLabel, countryComboBox, nextButton3);
+        Scene scene3 = new Scene(phase3Layout, 300, 200);
 
-        // Επιλογή προϋπολογισμού
-        Label budgetLabel = new Label("Set your preferred maximum monthly budget");
+        // ### PHASE 4
+        Label budgetLabel = new Label("Set your preferred maximum monthly budget:");
         TextField budgetTextField = new TextField();
-        budgetTextField.setPromptText("Enter amount");
+        Button nextButton4 = new Button("Next");
+        VBox phase4Layout = new VBox(10, budgetLabel, budgetTextField, nextButton4);
+        Scene scene4 = new Scene(phase4Layout, 300, 200);
 
-        // Επιλογή συγκατοίκησης
+        // ### PHASE 5
         Label roommateLabel = new Label("Would you like to have a roommate?");
-        ToggleGroup roommateGroup = new ToggleGroup();
-        RadioButton yesButton = new RadioButton("Yes");
-        yesButton.setToggleGroup(roommateGroup);
-        RadioButton noButton = new RadioButton("No");
-        noButton.setToggleGroup(roommateGroup);
+        ComboBox<String> roommateComboBox = new ComboBox<>();
+        roommateComboBox.getItems().addAll("YES", "NO");
+        Button nextButton5 = new Button("Next");
+        VBox phase5Layout = new VBox(10, roommateLabel, roommateComboBox, nextButton5);
+        Scene scene5 = new Scene(phase5Layout, 300, 200);
 
-        // Κουμπί αναζήτησης
-        Button searchButton = new Button("Find Matching Universities");
-        Label resultLabel = new Label("");
+        // ### PHASE 6
+        Label resultsLabel = new Label("Here are the universities that match your preferences:");
+        ListView<String> resultsListView = new ListView<>();
+        Button finishButton = new Button("Finish");
+        VBox phase6Layout = new VBox(10, resultsLabel, resultsListView, finishButton);
+        Scene scene6 = new Scene(phase6Layout, 300, 400);
 
-        // Κουμπί για την αναζήτηση των πανεπιστημίων
-        searchButton.setOnAction(e -> {
-            String selectedPeriod = periodComboBox.getValue();
-            List<String> selectedLanguage = new ArrayList<>();
-            String selectedCountry = countryComboBox.getValue();
-            double maxBudget = Double.parseDouble(budgetTextField.getText());
-            boolean hasRoommate = yesButton.isSelected();
-
-            // Δημιουργία του χρήστη με τις επιλογές του
-            User user = new User();
-            user.setUserslang(selectedLanguage);
-            user.setPreferredCountry(selectedCountry);
-            user.setMaxMonthlyCost(maxBudget);
-            user.setSharedAccomondation(hasRoommate);
-
-            // Εύρεση πανεπιστημίων που ταιριάζουν με τις προτιμήσεις
-            List<University> matchingUniversities = unidata.letsGoErasmus(user);
-
-            // Εμφάνιση των αποτελεσμάτων
-            StringBuilder resultText = new StringBuilder();
-            if (matchingUniversities.isEmpty()) {
-                resultText.append("No universities found that match your preferences.");
-            } else {
-                resultText.append("Here are the universities that match your preferences:\n");
-                for (University university : matchingUniversities) {
-                    resultText.append(university).append("\n");
-                }
-            }
-            resultLabel.setText(resultText.toString());
+        // Button actions
+        nextButton1.setOnAction(e -> {
+            user.setPreferredPeriod(periodComboBox.getValue());
+            primaryStage.setScene(scene2);
         });
 
-        // Προσθήκη των στοιχείων στην VBox
-        vbox.getChildren().addAll(titleLabel, periodLabel, periodComboBox, langLabel, languageComboBox,
-                countryLabel, countryComboBox, budgetLabel, budgetTextField, roommateLabel, yesButton, noButton,
-                searchButton, resultLabel);
+        nextButton2.setOnAction(e -> {
+            user.setUserslang(langListView.getSelectionModel().getSelectedItems());
+            primaryStage.setScene(scene3);
+        });
 
-        // Ρύθμιση σκηνής
-        Scene scene = new Scene(vbox, 400, 500);
-        primaryStage.setTitle("DMST+ Erasmus");
-        primaryStage.setScene(scene);
+        nextButton3.setOnAction(e -> {
+            user.setPreferredCountry(countryComboBox.getValue());
+            primaryStage.setScene(scene4);
+        });
+
+        nextButton4.setOnAction(e -> {
+            user.setMaxMonthlyCost(Double.parseDouble(budgetTextField.getText()));
+            primaryStage.setScene(scene5);
+        });
+
+        nextButton5.setOnAction(e -> {
+            boolean sharedAccom = roommateComboBox.getValue().equals("YES");
+            user.setSharedAccomondation(sharedAccom);
+            List<University> matchingUniversities = unidata.letsGoErasmus(user);
+            for (University university : matchingUniversities) {
+                resultsListView.getItems().add(university.toString());
+            }
+            primaryStage.setScene(scene6);
+        });
+
+        finishButton.setOnAction(e -> primaryStage.close());
+
+        primaryStage.setScene(scene1);
         primaryStage.show();
     }
 
