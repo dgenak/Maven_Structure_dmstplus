@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
     private List<String> userslanguages;
     private String preferredPeriod;
-    private String preferredCountry;
+    private List<String> preferredCountry;
     private double maxMonthlyCost;
     private boolean sharedAccomondation;
     
@@ -13,7 +13,7 @@ public class User {
     public User() {
         this.userslanguages = null;
         this.preferredPeriod = "";
-        this.preferredCountry = "";
+        this.preferredCountry = null;
         this.maxMonthlyCost = 0.0;
         this.sharedAccomondation = false;
     }
@@ -26,7 +26,7 @@ public class User {
         return preferredPeriod;
     }
 
-    public String getPreferredCountry() {
+    public List<String> getPreferredCountry() {
         return preferredCountry;
     }
 
@@ -41,15 +41,15 @@ public class User {
     public void setUserslang(List<String> userslanguages) {
         this.userslanguages = userslanguages;
     }
-
+    
     public void setPreferredPeriod(String preferredPeriod) {
         this.preferredPeriod = preferredPeriod;
     }
     
-    public void setPreferredCountry(String preferredCountry) {
+    public void setPreferredCountry(List<String> preferredCountry) {
         this.preferredCountry = preferredCountry;
     }
-    
+
     public void setMaxMonthlyCost(double maxMonthlyCost) {
         this.maxMonthlyCost = maxMonthlyCost;
     }
