@@ -1,9 +1,13 @@
 package com.dmstplus;
 
 public class Languages {
-    public String language;
+    public String lang;
     
-    public Languages(String language) {
-        this.language = language;
+    public Languages(String lang) {
+        this.lang = lang;
+    }
+
+    public String getLang() {
+        return lang;
     }
 }

@@ -24,7 +24,7 @@ public class University {
         this.bestPeriodToVisit = bestPeriodToVisit;
         this.countrysLang = countrysLang;
     }
-    // TODO Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε όρισμα του κατασκευαστή
+    // Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε όρισμα του κατασκευαστή
     public String getUniName() {
         return uniName;
     }

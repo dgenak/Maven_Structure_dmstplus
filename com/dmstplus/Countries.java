@@ -6,4 +6,8 @@ public class Countries {
     public Countries(String country) {
         this.country = country;
     }
+
+    public String getCountry() {
+        return country;
+    }
 }

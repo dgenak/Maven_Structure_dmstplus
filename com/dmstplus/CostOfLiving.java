@@ -1,9 +1,13 @@
 package com.dmstplus;
 
 public class CostOfLiving {
-    public double cost;
+    private double amount;
     
-    public CostOfLiving(double cost) {
-        this.cost = cost;
+    public CostOfLiving(double amount) {
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }

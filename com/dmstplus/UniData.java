@@ -92,7 +92,31 @@ public class UniData {
         costpermonth.add(new CostOfLiving(1250.00));
         costpermonth.add(new CostOfLiving(1500.00));
     }
+
+    // Μέθοδος για να επιστρέψουμε την λίστα των χωρών
+    public List<String> getCountries() {
+        List<String> countryNames = new ArrayList<>();
+        for (Countries country : countries) {
+            countryNames.add(country.getCountry()); // Παίρνουμε το όνομα της χώρας
+        }
+        return countryNames;
+    }
+
+        // Μέθοδος για να επιστρέψουμε την λίστα των πανεπιστημίων
+    public List<University> getUniversities() {
+        return universities;
+    }
     
+    // Μέθοδος για να επιστρέψουμε την λίστα των γλωσσών
+    public List<Languages> getLanguages() {
+        return languages;
+    }
+    
+    // Μέθοδος για να επιστρέψουμε την λίστα του κόστους διαβίωσης
+    public List<CostOfLiving> getAmount() {
+        return costpermonth;
+    }
+
 
     public List<University> letsGoErasmus(User user) {
         // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
