@@ -1,96 +1,103 @@
 package com.dmstplus;
+
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
 import java.util.List;
-import java.util.Scanner;
 
-
-// δημιουργια μιας λιστας με τα μηνιαια κόστοι
 public class App extends Application {
-    public void start(Stage primaryStage) {
-        Label label = new Label("Γεια σου");
-        Scene scene = new Scene(label, 300, 200);
 
-        primaryStage.setTitle("DMST+");
+    private final UniData unidata = new UniData(); // Χρήση της κλάσης δεδομένων πανεπιστημίων
+    private final User user = new User(); // Αντικείμενο χρήστη για την αποθήκευση των επιλογών του
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("DMST+ Erasmus Finder");
+
+        // *** Δημιουργία Root Layout ***
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(10));
+
+        // *** Σκηνή 1: Επιλογή περιόδου (Spring, Winter) σε κουμπιά ***
+        Label periodLabel = new Label("Choose which period you prefer:");
+        Button springButton = new Button("Spring");
+        Button winterButton = new Button("Winter");
+        
+        springButton.setOnAction(e -> user.setPreferredPeriod("Spring"));
+        winterButton.setOnAction(e -> user.setPreferredPeriod("Winter"));
+
+        // *** Σκηνή 2: Επιλογή γλωσσών (Μπορείς να επιλέξεις πολλές γλώσσες) ***
+        Label langLabel = new Label("Select the languages you know:");
+        ListView<String> langList = new ListView<>();
+        langList.getItems().addAll(unidata.getLang());
+        langList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // *** Σκηνή 3: Επιλογή χωρών (Μπορείς να επιλέξεις πολλές χώρες) ***
+        Label countryLabel = new Label("Choose countries you prefer:");
+        ListView<String> countryList = new ListView<>();
+        countryList.getItems().addAll(unidata.getCountries());
+        countryList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // *** Σκηνή 4: Προϋπολογισμός ***
+        Label budgetLabel = new Label("Set your preferred maximum monthly budget:");
+        TextField budgetField = new TextField();
+        budgetField.setPromptText("Enter budget (e.g., 1000)");
+
+        // *** Σκηνή 5: Κοινόχρηστη διαμονή (YES/NO σε κουμπιά) ***
+        Label accomLabel = new Label("Would you like to have a roommate?");
+        Button yesButton = new Button("Yes");
+        Button noButton = new Button("No");
+        
+        yesButton.setOnAction(e -> user.setSharedAccomondation(true));
+        noButton.setOnAction(e -> user.setSharedAccomondation(false));
+
+        // *** Κουμπί Υποβολής για εύρεση πανεπιστημίων ***
+        Button submitButton = new Button("Find Universities");
+        Label resultLabel = new Label();
+
+        // *** Ενέργεια στο κουμπί ***
+        submitButton.setOnAction(e -> {
+            // Εκχώρηση επιλογών του χρήστη
+            user.setUserslang(langList.getSelectionModel().getSelectedItems());
+            user.setPreferredCountry(countryList.getSelectionModel().getSelectedItems());
+            user.setMaxMonthlyCost(Double.parseDouble(budgetField.getText()));
+
+            // Αναζήτηση πανεπιστημίων
+            List<String> matchingUniversities = unidata.letsGoErasmus(user);
+
+            // Εμφάνιση αποτελεσμάτων
+            if (matchingUniversities.isEmpty()) {
+                resultLabel.setText("No universities match your preferences.");
+            } else {
+                StringBuilder results = new StringBuilder("Matching universities:\n");
+                for (String university : matchingUniversities) {
+                    results.append(university).append("\n");
+                }
+                resultLabel.setText(results.toString());
+            }
+        });
+
+        // *** Προσθήκη στοιχείων στο layout ***
+        root.getChildren().addAll(
+                periodLabel, springButton, winterButton,
+                langLabel, langList,
+                countryLabel, countryList,
+                budgetLabel, budgetField,
+                accomLabel, yesButton, noButton,
+                submitButton, resultLabel
+        );
+
+        // Δημιουργία και εμφάνιση σκηνής
+        Scene scene = new Scene(root, 400, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     public static void main(String[] args) {
-
         launch(args);
-        
-        Scanner scanner = new Scanner(System.in);
-        UniData unidata = new UniData();
-        //### PHASE 1
-        System.out.println("Choose which period you prefer to go");
-        System.out.println("Spring,Winter");
-        
-        //Αναγνωση της επιλογης του χρηστη και εκχωριση στην μεταβλητη uperiod
-        String uperiod = scanner.nextLine();
-        System.out.println("You chose:" + uperiod);
-
-        /* ### PHASE 2
-         * Εκχώρηση των ξένων γλωσσών που γνωρίζει ο user
-        */
-        List<String> ulang = unidata.getLang();
-        System.out.println("Choose the languages you know");
-        for (String lang : ulang) {
-            System.out.println("- " + ulang);
-        }
-        String userslang = scanner.nextLine();
-        //### PHASE 3
-        // Διαβάζει απο τον χρηστη σε ποια χώρα προτιμάει να παει
-        
-        List<String> countries = unidata.getCountries();
-        System.out.println("Here are the countries you can go");
-        for (String country : countries) {
-            System.out.println("- " + country);
-        }
-        System.out.println("choose which country you would like to go to");
-        String ucountry = scanner.nextLine();
-
-        //### PHASE 4
-        //Διαβασμα της επιλογης χρηστη
-        System.out.println("Set your preferred maximum monthly budget");
-        double maxcost = scanner.nextDouble();
-
-        scanner.nextLine();
-
-        //### PHASE 5
-        System.out.println("Would you like to have a roomate");
-        System.out.println("YES OR NO");
-        String answer = scanner.nextLine();
-        System.out.println("You answered" + answer);
-        boolean sharedaccom = false;
-        if (answer.equalsIgnoreCase("YES")) {
-            sharedaccom = true;
-        }
-        
-        /* PHASE 6
-         * Καλούμε την letsGoErasmus και εκτυπωνουμε την uni_match
-         */
-        User user  = new User();
-        user.setUserslang(ulang);
-        user.setPreferredCountry(countries);
-        user.setMaxMonthlyCost(maxcost);
-        user.setSharedAccomondation(sharedaccom);
-
-        List<University> matchingUniversities = unidata.letsGoErasmus(user);
-
-        /* 
-         * Εδώ ελέγχουμε αν η λίστα που επιστρέφει η letsGoErasmus είναι κενή ή όχι
-         * Δηλαδή ελέγχουμε αν υπάρχει κάποιο πανεπιστήμιο που να ταιριάζει με τις προτιμήσεις του user
-         */
-        if (matchingUniversities.isEmpty()) {
-            System.out.println("There are no universities that match your preferences");
-        } else {
-            System.out.println("Here are the universities that match your preferences:");
-            for (University university : matchingUniversities) {
-                System.out.println(university);
-            }
-        }
-        scanner.close();
     }
 }

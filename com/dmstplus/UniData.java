@@ -102,6 +102,7 @@ public class UniData {
         return countryNames;
     }
 
+    // Μέθοδος για να επιστρέψουμε την λίστα των γλωσσών
     public List<String> getLang() {
         List<String> ulang = new ArrayList<>();
         for (Languages lang : languages) {
@@ -114,21 +115,16 @@ public class UniData {
     public List<University> getUniversities() {
         return universities;
     }
-    
-    // Μέθοδος για να επιστρέψουμε την λίστα των γλωσσών
-    public List<Languages> getLanguages() {
-        return languages;
-    }
-    
+
     // Μέθοδος για να επιστρέψουμε την λίστα του κόστους διαβίωσης
     public List<CostOfLiving> getAmount() {
         return costpermonth;
     }
 
 
-    public List<University> letsGoErasmus(User user) {
+    public List<String> letsGoErasmus(User user) {
         // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
-        List<University> uni_match = new ArrayList<>();
+        List<String> uni_match = new ArrayList<>();
         
         for (University university : universities) {
             boolean is_it_a_match = true;
@@ -159,7 +155,7 @@ public class UniData {
              */
             // Τέλος αν το πανεπιστήμιο πληρεί τις προϋποθέσεις του user τότε το αποθηκεύουμε στη λίστα uni_match
             if (is_it_a_match) {
-                uni_match.add(university);
+                uni_match.add(university.getUniName());
             }
             
         }
