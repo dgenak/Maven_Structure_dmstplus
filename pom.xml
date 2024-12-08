@@ -13,14 +13,14 @@
     <name>DMST+ Erasmus Finder</name>
 
     <properties>
-        <!-- Define the Java version -->
-        <java.version>17</java.version>
-        <!-- Define JavaFX version -->
-        <javafx.version>17.0.8</javafx.version>
+        <!-- Ορισμός της έκδοσης Java -->
+        <java.version>23</java.version>
+        <!-- Ορισμός της έκδοσης JavaFX -->
+        <javafx.version>23.0.1</javafx.version>
     </properties>
 
     <dependencies>
-        <!-- JUnit dependency for testing -->
+        <!-- JUnit για δοκιμές -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -28,7 +28,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JavaFX Dependencies -->
+        <!-- Εξαρτήσεις JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -68,6 +68,9 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.dmstplus.App</mainClass> <!-- Η κύρια κλάση -->
+                    <jvmArgs>
+                        --module-path C:\Users\dim\JAVA\prog_II_project\Maven_Structure_dmstplus\.vscode\javaFX\openjfx-23.0.1_windows-x64_bin-sdk\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml
+                    </jvmArgs>
                 </configuration>
             </plugin>
         </plugins>
