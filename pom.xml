@@ -13,14 +13,14 @@
     <name>DMST+ Erasmus Finder</name>
 
     <properties>
-        <!-- Ορισμός της έκδοσης Java -->
+        <!-- Define the Java version -->
         <java.version>23</java.version>
-        <!-- Ορισμός της έκδοσης JavaFX -->
+        <!-- Define JavaFX version -->
         <javafx.version>23.0.1</javafx.version>
     </properties>
 
     <dependencies>
-        <!-- JUnit για δοκιμές -->
+        <!-- JUnit dependency for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -28,7 +28,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Εξαρτήσεις JavaFX -->
+        <!-- JavaFX Dependencies -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -67,10 +67,13 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.dmstplus.App</mainClass> <!-- Η κύρια κλάση -->
-                    <jvmArgs>
-                        --module-path C:\Users\dim\JAVA\prog_II_project\Maven_Structure_dmstplus\.vscode\javaFX\openjfx-23.0.1_windows-x64_bin-sdk\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml
-                    </jvmArgs>
+                    <mainClass>com.dmstplus.App</mainClass>
+                    <options>
+                        <option>--module-path</option>
+                        <option>C:/Users/dim/JAVA/prog_II_project/Maven_Structure_dmstplus/.vscode/javaFX/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib</option>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>
