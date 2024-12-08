@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch com.dmstplus.App",
+            "request": "launch",
+            "mainClass": "com.dmstplus.App",
+            "vmArgs": "--module-path C:/Users/dim/JAVA/prog_II_project/Maven_Structure_dmstplus/.vscode/javaFX/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib --add-modules javafx.controls,javafx.fxml",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "JAVA_HOME": "C:/Program Files/Java/jdk-23"
+            }
+        }
+    ]
+}
