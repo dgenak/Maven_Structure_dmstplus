@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX εξαρτήσεις (μέσω Maven Central ή τοπικής διαδρομής) -->
+        <!-- JavaFX εξαρτήσεις -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -46,6 +46,20 @@
                 <version>3.10.1</version>
                 <configuration>
                     <release>23</release>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Jar Plugin για προσθήκη Main-Class στο JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>com.dmstplus.App</Main-Class> <!-- Εδώ η κύρια κλάση της εφαρμογής σου -->
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
 
