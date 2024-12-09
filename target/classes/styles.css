@@ -1,0 +1,50 @@
+/* styles.css */
+
+/* Ρυθμίσεις γενικού στυλ */
+.root {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-padding: 20px;
+}
+
+/* Ρυθμίσεις για τα κουμπιά */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Ρυθμίσεις για το κείμενο */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Ρυθμίσεις για τα πεδία εισαγωγής */
+.text-field {
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+}
+
+/* Ρυθμίσεις για τη λίστα επιλογής */
+.list-view {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+/* Στυλ για τα μηνύματα λάθους */
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

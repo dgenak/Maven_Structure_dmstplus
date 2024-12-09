@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.dmstplus.App" spacing="10" alignment="CENTER" padding="20">
+    <!-- Label για την επιλογή περιόδου -->
+    <Label text="Choose which period you prefer to go:" fx:id="periodLabel" />
+
+    <!-- Κουμπιά για την επιλογή περιόδου -->
+    <Button text="Spring" fx:id="springButton" onAction="#handleSpringButton" />
+    <Button text="Winter" fx:id="winterButton" onAction="#handleWinterButton" />
+    
+    <!-- Σφάλμα -->
+    <Label fx:id="errorLabel" styleClass="error" />
+    
+    <!-- Κουμπί για επόμενο -->
+    <Button text="Next" fx:id="nextButton" onAction="#handleNextButton" disable="true" />
+</VBox>
