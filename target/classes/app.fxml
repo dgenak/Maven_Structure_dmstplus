@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Pos?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dmstplus.AppController">
+    <!-- Phase 1 (Semester Selection) -->
+    <Pane fx:id="phase1" visible="true" layoutX="10" layoutY="10">
+        <Button fx:id="springButton" text="Spring" onAction="#handleSpring" layoutX="20" layoutY="20"/>
+        <Button fx:id="winterButton" text="Winter" onAction="#handleWinter" layoutX="100" layoutY="20"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="200" layoutY="20"/>
+    </Pane>
 
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.dmstplus.App" spacing="10" alignment="CENTER" padding="20">
-    <!-- Label για την επιλογή περιόδου -->
-    <Label text="Choose which period you prefer to go:" fx:id="periodLabel" />
+    <!-- Phase 2 (Languages Selection) -->
+    <Pane fx:id="phase2" visible="false" layoutX="10" layoutY="10">
+        <ListView fx:id="languagesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="180"/>
+    </Pane>
 
-    <!-- Κουμπιά για την επιλογή περιόδου -->
-    <Button text="Spring" fx:id="springButton" onAction="#handleSpringButton" />
-    <Button text="Winter" fx:id="winterButton" onAction="#handleWinterButton" />
-    
-    <!-- Σφάλμα -->
-    <Label fx:id="errorLabel" styleClass="error" />
-    
-    <!-- Κουμπί για επόμενο -->
-    <Button text="Next" fx:id="nextButton" onAction="#handleNextButton" disable="true" />
-</VBox>
+    <!-- Phase 3 (Countries Selection) -->
+    <Pane fx:id="phase3" visible="false" layoutX="10" layoutY="10">
+        <ListView fx:id="countriesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="180"/>
+    </Pane>
+
+    <!-- Phase 4 (Budget) -->
+    <Pane fx:id="phase4" visible="false" layoutX="10" layoutY="10">
+        <TextField fx:id="budgetTextField" layoutX="20" layoutY="20"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="50"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="50"/>
+    </Pane>
+
+    <!-- Phase 5 (Accommodation) -->
+    <Pane fx:id="phase5" visible="false" layoutX="10" layoutY="10">
+        <Button fx:id="yesButton" text="Yes" onAction="#handleYes" layoutX="20" layoutY="20"/>
+        <Button fx:id="noButton" text="No" onAction="#handleNo" layoutX="100" layoutY="20"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="200" layoutY="20"/>
+    </Pane>
+
+    <!-- Phase 6 (Display Matching Universities) -->
+    <Pane fx:id="phase6" visible="false" layoutX="10" layoutY="10">
+        <Label fx:id="messageLabel" layoutX="20" layoutY="20"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="100"/>
+    </Pane>
+</AnchorPane>

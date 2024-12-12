@@ -2,6 +2,7 @@ com\dmstplus\UniData.class
 com\dmstplus\University.class
 com\dmstplus\CostOfLiving.class
 com\dmstplus\User.class
+com\dmstplus\AppController.class
 com\dmstplus\Languages.class
 com\dmstplus\App.class
 com\dmstplus\Countries.class
