@@ -6,42 +6,44 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dmstplus.AppController">
     <!-- Phase 1 (Semester Selection) -->
     <Pane fx:id="phase1" visible="true" layoutX="10" layoutY="10">
-        <Button fx:id="springButton" text="Spring" onAction="#handleSpring" layoutX="20" layoutY="20"/>
-        <Button fx:id="winterButton" text="Winter" onAction="#handleWinter" layoutX="100" layoutY="20"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="200" layoutY="20"/>
+        <Button fx:id="springButton" text="Spring" onAction="#optionS_1" layoutX="20" layoutY="20"/>
+        <Button fx:id="winterButton" text="Winter" onAction="#optionW_1" layoutX="100" layoutY="20"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="200" layoutY="20"/>
     </Pane>
 
     <!-- Phase 2 (Languages Selection) -->
     <Pane fx:id="phase2" visible="false" layoutX="10" layoutY="10">
         <ListView fx:id="languagesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="180"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180"/>
     </Pane>
 
     <!-- Phase 3 (Countries Selection) -->
     <Pane fx:id="phase3" visible="false" layoutX="10" layoutY="10">
         <ListView fx:id="countriesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="180"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180"/>
     </Pane>
 
     <!-- Phase 4 (Budget) -->
     <Pane fx:id="phase4" visible="false" layoutX="10" layoutY="10">
         <TextField fx:id="budgetTextField" layoutX="20" layoutY="20"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#handleNext" layoutX="20" layoutY="50"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="50"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="50"/>
     </Pane>
 
     <!-- Phase 5 (Accommodation) -->
     <Pane fx:id="phase5" visible="false" layoutX="10" layoutY="10">
-        <Button fx:id="yesButton" text="Yes" onAction="#handleYes" layoutX="20" layoutY="20"/>
-        <Button fx:id="noButton" text="No" onAction="#handleNo" layoutX="100" layoutY="20"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="200" layoutY="20"/>
+        <Button fx:id="yesButton" text="Yes" onAction="#optionY_5" layoutX="20" layoutY="20"/>
+        <Button fx:id="noButton" text="No" onAction="#optionN_5" layoutX="100" layoutY="20"/>
+        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="200" layoutY="20"/>
     </Pane>
 
     <!-- Phase 6 (Display Matching Universities) -->
     <Pane fx:id="phase6" visible="false" layoutX="10" layoutY="10">
         <Label fx:id="messageLabel" layoutX="20" layoutY="20"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#handlePrev" layoutX="100" layoutY="100"/>
+        <ListView fx:id="uni_match" prefWidth="200.0" prefHeight="200.0" />
+        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="100"/>
     </Pane>
 </AnchorPane>
