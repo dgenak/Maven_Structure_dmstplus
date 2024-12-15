@@ -93,6 +93,7 @@ public class UniData {
         costpermonth.add(new CostOfLiving(1500.00));
     }
 
+
     // Μέθοδος για να επιστρέψουμε την λίστα των χωρών
     public List<String> getCountries() {
         List<String> countryNames = new ArrayList<>();
@@ -121,7 +122,6 @@ public class UniData {
         return costpermonth;
     }
 
-
     public List<String> letsGoErasmus(User user) {
         // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
         List<String> uni_match = new ArrayList<>();
@@ -129,18 +129,18 @@ public class UniData {
         for (University university : universities) {
             boolean is_it_a_match = true;
             // Εδώ ελέγχουμε αν ο user γνωρίζει τη γλώσσα της συγκεκριμένης χώρας
-            if (!user.getUserslanguages().contains(university.getCountrysLang())) {
+            if (!user.getUserslanguages().contains(university.getCountrysLang().toLowerCase())) {
                 is_it_a_match = false;
             }
 
             // Εδώ ελέγχουμε αν το συγκεκριμένο πανεπιστήμιο βρίσκεται στη χώρα που επιθυμεί ο user
-            if (!user.getPreferredCountry().contains(university.getCountry())) {
+            if (!user.getPreferredCountry().contains(university.getCountry().toLowerCase())) {
                 is_it_a_match = false;
             }
 
             if (user.getSharedAccomondation()) {
                 // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής (με συγκατοίκηση) της συγκεκριμένης πόλης 
-                if ((university.getCostWithSh_Accomondation() == 0.0) && (user.getMaxMonthlyCost() < university.getCostWithSh_Accomondation())) {
+                if ((university.getCostWithSh_Accomondation() == 0.0) || (user.getMaxMonthlyCost() < university.getCostWithSh_Accomondation())) {
                     is_it_a_match = false;
                 }
             } else {

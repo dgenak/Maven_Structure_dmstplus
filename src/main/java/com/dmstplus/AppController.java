@@ -13,14 +13,21 @@ public class AppController {
     // Εισαγωγή των FXML στοιχείων
     @FXML private Button springButton, winterButton, yesButton, noButton;
     @FXML private Button nextPhaseButton, prevPhaseButton;
-    @FXML private ListView<String> uni_match;
+    @FXML private ListView<String> uniMatches;
     @FXML private ListView<String> languagesListView, countriesListView;
     @FXML private TextField budgetTextField;
     @FXML private Label errorLabel, messageLabel;
-    @FXML private Pane phase1, phase2, phase3, phase4, phase5, phase6;
+    @FXML private Label phase0Label;
+    @FXML private Label phase1Label;
+    @FXML private Label phase2Label;
+    @FXML private Label phase3Label;
+    @FXML private Label phase4Label;
+    @FXML private Label phase5Label;
+    @FXML private Pane phase0, phase1, phase2, phase3, phase4, phase5, phase6;
 
     private User user = new User();
     private UniData uniData = new UniData();
+    
     /* SHOW LISTS METHOD */
     @FXML
     private void initialize() {
@@ -48,7 +55,7 @@ public class AppController {
 
     /* PHASE 3 METHOD */
     @FXML
-    private void ooptionC_3() {
+    private void optionC_3() {
         List<String> selectedCs = countriesListView.getSelectionModel().getSelectedItems();
         user.setPreferredCountry(selectedCs);
     }
@@ -78,21 +85,22 @@ public class AppController {
     /* PHASE 6 AND CALL OF THE letsGoErasmus METHOD */
     @FXML
     private void MatchingUnis() {
-        List<String> uni_match = uniData.letsGoErasmus(user);
-        if (uni_match.isEmpty()) {
+        List<String> uniMatches = uniData.letsGoErasmus(user);
+        if (uniMatches.isEmpty()) {
             messageLabel.setText("Δεν υπάρχουν πανεπιστήμια που να ταιριάζουν με τις προτιμήσεις σας.");
         } else {
             messageLabel.setText("Βρέθηκαν τα εξής πανεπιστήμια: ");
-            this.uni_match.setItems(FXCollections.observableArrayList(uni_match));
+            this.uniMatches.setItems(FXCollections.observableArrayList(uniMatches));
         }
     }
 
     /* NEXT PHASE PROCEDURE */
     private void showNextPhase(Pane currentPhase) {
-
         currentPhase.setVisible(false);
 
-        if (currentPhase == phase1) {
+        if (currentPhase == phase0) {
+            phase1.setVisible(true);
+        } else if (currentPhase == phase1) {
             phase2.setVisible(true);
         } else if (currentPhase == phase2) {
             phase3.setVisible(true);
@@ -106,8 +114,7 @@ public class AppController {
     }
 
     /* PREVIOUS PHASE PROCEDURE */
-    private void showPreviusPhase(Pane currentPhase) {
-
+    private void showPreviousPhase(Pane currentPhase) {
         currentPhase.setVisible(false);
 
         if (currentPhase == phase2) {
@@ -125,24 +132,10 @@ public class AppController {
 
     /* NEXT PHASE METHOD */
     @FXML
-    private void Prev_mth(ActionEvent event) {
-        if (phase2.isVisible()) {
-            showPreviusPhase(phase2);
-        } else if (phase3.isVisible()) {
-            showPreviusPhase(phase3);
-        } else if (phase4.isVisible()) { 
-            showPreviusPhase(phase4);
-        } else if (phase5.isVisible()) {
-            showPreviusPhase(phase5);
-        } else {
-            if (phase6.isVisible()) showPreviusPhase(phase6);
-        }
-    }
-
-    /* PREVIOUS PHASE METHOD */
-    @FXML
     private void next_mth(ActionEvent event) {
-        if (phase1.isVisible()) {
+        if (phase0.isVisible()) {
+            showNextPhase(phase0);
+        } else if (phase1.isVisible()) {
             showNextPhase(phase1);
         } else if (phase2.isVisible()) {
             showNextPhase(phase2);
@@ -150,10 +143,26 @@ public class AppController {
             showNextPhase(phase3);
         } else if (phase4.isVisible()) {
             showNextPhase(phase4);
-        } else {
-            if (phase5.isVisible()) showNextPhase(phase5);
+        } else if (phase5.isVisible()) {
+            showNextPhase(phase5);
         }
     }
 
-    
+    /* PREVIOUS PHASE METHOD */
+    @FXML
+    private void Prev_mth(ActionEvent event) {
+        if (phase1.isVisible()) {
+            return;
+        } else if (phase2.isVisible()) {
+            showPreviousPhase(phase2);
+        } else if (phase3.isVisible()) {
+            showPreviousPhase(phase3);
+        } else if (phase4.isVisible()) { 
+            showPreviousPhase(phase4);
+        } else if (phase5.isVisible()) {
+            showPreviousPhase(phase5);
+        } else if (phase6.isVisible()) {
+            showPreviousPhase(phase6);
+        }
+    }
 }
