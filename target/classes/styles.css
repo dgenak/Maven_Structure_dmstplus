@@ -1,50 +1,110 @@
-/* styles.css */
-
-/* Ρυθμίσεις γενικού στυλ */
+/* Γενικό στυλ για την εφαρμογή */
 .root {
-    -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 14px;
-    -fx-padding: 20px;
+    font-family: "Arial", sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
 }
 
-/* Ρυθμίσεις για τα κουμπιά */
+/* Στυλ για τα πάνελ */
+.pane {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid blue; /* Διορθώθηκε η τιμή του border */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Διορθώθηκε η σύνταξη για το box-shadow */
+}
+
+/* Κουμπιά */
 .button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Διορθώθηκε η σύνταξη για το box-shadow */
 }
 
 .button:hover {
-    -fx-background-color: #45a049;
+    background-color: #45a049;
 }
 
-/* Ρυθμίσεις για το κείμενο */
+/* Ρυθμίσεις για τα πεδία εισαγωγής (TextField, ListView) */
+.text-field, .list-view {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid blue; /* Διορθώθηκε η τιμή του border */
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+/* Στυλ για τις επικεφαλίδες (Label) */
 .label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 0;
 }
 
-/* Ρυθμίσεις για τα πεδία εισαγωγής */
-.text-field {
-    -fx-padding: 5px;
-    -fx-font-size: 14px;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5px;
-}
-
-/* Ρυθμίσεις για τη λίστα επιλογής */
-.list-view {
-    -fx-background-color: #f9f9f9;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5px;
-    -fx-padding: 10px;
-}
-
-/* Στυλ για τα μηνύματα λάθους */
+/* Στυλ για τα μηνύματα σφάλματος */
 .error {
-    -fx-text-fill: red;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+    color: red;
+    font-size: 14px;
+}
+
+/* Στυλ για τα κουμπιά Next/Previous */
+.next-prev-button {
+    background-color: #009688;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Διορθώθηκε η σύνταξη για το box-shadow */
+}
+
+.next-prev-button:hover {
+    background-color: #00796b;
+}
+
+/* Κουμπιά Yes/No */
+.yes-no-button {
+    background-color: #ffeb3b;
+    color: #333;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Διορθώθηκε η σύνταξη για το box-shadow */
+}
+
+.yes-no-button:hover {
+    background-color: #fbc02d;
+}
+
+/* Στυλ για τις λίστες (ListView) */
+.list-view {
+    background-color: #ffffff00;
+    border: 1px solid blue; /* Διορθώθηκε η τιμή του border */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Στυλ για την επιλογή των φάσεων (Next/Previous buttons) */
+.phase-buttons {
+    font-size: 16px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Κουμπί για το Matching Unis */
+.uni-match-button {
+    background-color: #2196F3;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.uni-match-button:hover {
+    background-color: #1976D2;
 }

@@ -3,47 +3,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Pos?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dmstplus.AppController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dmstplus.AppController" stylesheets="@styles.css">
     <!-- Phase 1 (Semester Selection) -->
-    <Pane fx:id="phase1" visible="true" layoutX="10" layoutY="10">
-        <Button fx:id="springButton" text="Spring" onAction="#optionS_1" layoutX="20" layoutY="20"/>
-        <Button fx:id="winterButton" text="Winter" onAction="#optionW_1" layoutX="100" layoutY="20"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="200" layoutY="20"/>
+    <Pane fx:id="phase1" visible="true" layoutX="10" layoutY="10" styleClass="pane">
+        <Button fx:id="springButton" text="Spring" onAction="#optionS_1" layoutX="20" layoutY="20" styleClass="button"/>
+        <Button fx:id="winterButton" text="Winter" onAction="#optionW_1" layoutX="100" layoutY="20" styleClass="button"/>
+        <Button fx:id="nextPhaseButton1" text="Next" onAction="#next_mth" layoutX="200" layoutY="20" styleClass="next-prev-button"/>
     </Pane>
 
     <!-- Phase 2 (Languages Selection) -->
-    <Pane fx:id="phase2" visible="false" layoutX="10" layoutY="10">
-        <ListView fx:id="languagesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180"/>
+    <Pane fx:id="phase2" visible="false" layoutX="10" layoutY="10" styleClass="pane">
+        <ListView fx:id="languagesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150" styleClass="list-view"/>
+        <Button fx:id="nextPhaseButton2" text="Next" onAction="#next_mth" layoutX="20" layoutY="180" styleClass="next-prev-button"/>
+        <Button fx:id="prevPhaseButton2" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180" styleClass="next-prev-button"/>
     </Pane>
 
     <!-- Phase 3 (Countries Selection) -->
-    <Pane fx:id="phase3" visible="false" layoutX="10" layoutY="10">
-        <ListView fx:id="countriesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180"/>
+    <Pane fx:id="phase3" visible="false" layoutX="10" layoutY="10" styleClass="pane">
+        <ListView fx:id="countriesListView" layoutX="20" layoutY="20" prefWidth="200" prefHeight="150" styleClass="list-view"/>
+        <Button fx:id="nextPhaseButton3" text="Next" onAction="#next_mth" layoutX="20" layoutY="180" styleClass="next-prev-button"/>
+        <Button fx:id="prevPhaseButton3" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="180" styleClass="next-prev-button"/>
     </Pane>
 
     <!-- Phase 4 (Budget) -->
-    <Pane fx:id="phase4" visible="false" layoutX="10" layoutY="10">
-        <TextField fx:id="budgetTextField" layoutX="20" layoutY="20"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="50"/>
+    <Pane fx:id="phase4" visible="false" layoutX="10" layoutY="10" styleClass="pane">
+        <TextField fx:id="budgetTextField" layoutX="20" layoutY="20" styleClass="text-field"/>
+        <Button fx:id="nextPhaseButton4" text="Next" onAction="#next_mth" layoutX="20" layoutY="180" styleClass="next-prev-button"/>
+        <Button fx:id="prevPhaseButton4" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="50" styleClass="next-prev-button"/>
     </Pane>
 
     <!-- Phase 5 (Accommodation) -->
-    <Pane fx:id="phase5" visible="false" layoutX="10" layoutY="10">
-        <Button fx:id="yesButton" text="Yes" onAction="#optionY_5" layoutX="20" layoutY="20"/>
-        <Button fx:id="noButton" text="No" onAction="#optionN_5" layoutX="100" layoutY="20"/>
-        <Button fx:id="nextPhaseButton" text="Next" onAction="#next_mth" layoutX="20" layoutY="180"/>
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="200" layoutY="20"/>
+    <Pane fx:id="phase5" visible="false" layoutX="10" layoutY="10" styleClass="pane">
+        <Button fx:id="yesButton" text="Yes" onAction="#optionY_5" layoutX="20" layoutY="20" styleClass="yes-no-button"/>
+        <Button fx:id="noButton" text="No" onAction="#optionN_5" layoutX="100" layoutY="20" styleClass="yes-no-button"/>
+        <Button fx:id="nextPhaseButton5" text="Next" onAction="#next_mth" layoutX="20" layoutY="180" styleClass="next-prev-button"/>
+        <Button fx:id="prevPhaseButton5" text="Previous" onAction="#Prev_mth" layoutX="200" layoutY="20" styleClass="next-prev-button"/>
     </Pane>
 
     <!-- Phase 6 (Display Matching Universities) -->
-    <Pane fx:id="phase6" visible="false" layoutX="10" layoutY="10">
-        <Label fx:id="messageLabel" layoutX="20" layoutY="20"/>
-        <ListView fx:id="uni_match" prefWidth="200.0" prefHeight="200.0" />
-        <Button fx:id="prevPhaseButton" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="100"/>
+    <Pane fx:id="phase6" visible="false" layoutX="10" layoutY="10" styleClass="pane">
+        <Label fx:id="messageLabel" layoutX="20" layoutY="20" styleClass="label"/>
+        <ListView fx:id="uni_match" prefWidth="200.0" prefHeight="200.0" styleClass="list-view"/>
+        <Button fx:id="prevPhaseButton6" text="Previous" onAction="#Prev_mth" layoutX="100" layoutY="100" styleClass="next-prev-button"/>
     </Pane>
 </AnchorPane>

@@ -11,6 +11,9 @@ public class App extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app.fxml"));
             Scene scene = new Scene(loader.load(), 400, 300);
+            // Εδώ προσθέτουμε το CSS
+            scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+            
             primaryStage.setTitle("DMST+ Erasmus Finder");
             primaryStage.setScene(scene);
             primaryStage.show();

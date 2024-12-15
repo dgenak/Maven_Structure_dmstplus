@@ -134,13 +134,13 @@ public class UniData {
             }
 
             // Εδώ ελέγχουμε αν το συγκεκριμένο πανεπιστήμιο βρίσκεται στη χώρα που επιθυμεί ο user
-            if (!user.getPreferredCountry().equals(university.getCountry())) {
+            if (!user.getPreferredCountry().contains(university.getCountry())) {
                 is_it_a_match = false;
             }
 
             if (user.getSharedAccomondation()) {
                 // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής (με συγκατοίκηση) της συγκεκριμένης πόλης 
-                if ((university.getCostWithSh_Accomondation() != 0) && (user.getMaxMonthlyCost() < university.getCostWithSh_Accomondation())) {
+                if ((university.getCostWithSh_Accomondation() == 0.0) && (user.getMaxMonthlyCost() < university.getCostWithSh_Accomondation())) {
                     is_it_a_match = false;
                 }
             } else {

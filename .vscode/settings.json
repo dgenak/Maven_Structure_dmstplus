@@ -1,12 +1,11 @@
 {
-    "java.home": "C:\\Program Files\\Java\\jdk-23",
-    "maven.executable.path": "C:\\Program Files\\Apache\\apache-maven-3.8.6\\bin\\mvn",  // Αν έχεις εγκαταστήσει το Maven
+    "maven.executable.path": "C:/Program Files/Apache/apache-maven-3.8.6/bin/mvn",
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-23",
-            "path": "C:\\Program Files\\Java\\jdk-23"
+            "path": "C:/Program Files/Java/jdk-23"
         }
     ],
-    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-23",
+    "java.jdt.ls.java.home": "C:/Program Files/Java/jdk-23",
     "java.configuration.updateBuildConfiguration": "interactive"
 }
