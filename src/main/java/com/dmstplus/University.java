@@ -13,9 +13,9 @@ public class University {
     private String bestPeriodToVisit;
     // Η γλώσσα που μιλάνε στη συγκεκριμένη χώρα
     private String countrysLang;
-
+    private String pdfLink;
     // Δημιουργία του κατασκευαστή της Universities
-    public University(String uniName, String country, String city, double monthlyCost, double costWithSh_Accomondation, String countrysLang, String bestPeriodToVisit) {
+    public University(String uniName, String country, String city, double monthlyCost, double costWithSh_Accomondation, String countrysLang, String bestPeriodToVisit, String pdfLink) {
         this.uniName = uniName;
         this.monthlyCost = monthlyCost;
         this.costWithSh_Accomondation = costWithSh_Accomondation;
@@ -23,6 +23,7 @@ public class University {
         this.city = city;
         this.bestPeriodToVisit = bestPeriodToVisit;
         this.countrysLang = countrysLang;
+        this.pdfLink = pdfLink;
     }
     // Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε όρισμα του κατασκευαστή
     public String getUniName() {
@@ -51,5 +52,12 @@ public class University {
 
     public String getCountrysLang() {
         return countrysLang;
+    }
+    public String getPdfLink() {
+        return pdfLink;
+    }
+
+    public void setPdfLink(String pdfLink) {
+        this.pdfLink = pdfLink;
     }
 }

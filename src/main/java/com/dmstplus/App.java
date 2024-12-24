@@ -10,10 +10,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+
+
+
+
+import java.io.File;        
+
+
+
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,10 +31,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-
 import java.awt.Desktop;
 import java.net.URL;
 import java.nio.file.Path;
@@ -40,7 +45,8 @@ public class App extends Application {
     private Pane phaseInfo, phaseCv, phase0, phase1, phase2, phase3, phase4, phase5, phase6;
 
     // Στοιχεία φάσεων
-    private ListView<String> languagesListView, countriesListView, uniMatches;
+    private ListView<String> languagesListView, countriesListView;
+    private ListView<University> uniMatches;
     private TextField budgetTextField;
     private Label messageLabel, errorLabel;
 
@@ -263,35 +269,35 @@ public class App extends Application {
         
         Text text2 = new Text("2. SURNAME Pre-Learning Agreement Form");
         text2.setLayoutX(20);
-        text2.setLayoutY(60);
+        text2.setLayoutY(80);
 
         Text text4 = new Text("3. Learning Agreement Studies Erasmus+");
         text4.setLayoutX(20);
-        text4.setLayoutY(90);
+        text4.setLayoutY(130);
 
         Text text5 = new Text("4. During the Mobility");
         text5.setLayoutX(20);
-        text5.setLayoutY(120);
+        text5.setLayoutY(180);
 
         // Δημιουργία κουμπιών
         Button button1 = new Button("Download and Open Form 1");
         button1.setLayoutX(220);
-        button1.setLayoutY(20);
+        button1.setLayoutY(40);
         button1.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Student_Application_Form_Outgoing.doc"));
 
         Button button2 = new Button("Download and Open Form 2");
         button2.setLayoutX(220);
-        button2.setLayoutY(50);
+        button2.setLayoutY(90);
         button2.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/SURNAME_PreLearningAgreementForm.xlsx"));
 
         Button button4 = new Button("Download and Open Form 3");
         button4.setLayoutX(220);
-        button4.setLayoutY(110);
+        button4.setLayoutY(140);
         button4.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Learning%20Agreement%20Studies%20Erasmus%2B.docx"));
 
         Button button5 = new Button("Download and Open Form 4");
         button5.setLayoutX(220);
-        button5.setLayoutY(140);
+        button5.setLayoutY(190);
         button5.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/During%20the%20Mobility.docx"));
 
         Button backButton = new Button("Back");
@@ -382,13 +388,13 @@ public class App extends Application {
         nextButton.setOnAction(_ -> showPhase(phase2));
     
         // Δημιουργία του κουμπιού Previous
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);
-        prevButton.setLayoutY(160);
-        prevButton.setOnAction(_ -> showPhase(phase0));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);
+        backButton.setLayoutY(160);
+        backButton.setOnAction(_ -> showPhase(phase0));
     
         // Προσθήκη των κουμπιών και του label στο Pane
-        phase.getChildren().addAll(label, springButton, winterButton, nextButton, prevButton);
+        phase.getChildren().addAll(label, springButton, winterButton, nextButton, backButton);
     
         return phase;
     }
@@ -438,13 +444,13 @@ public class App extends Application {
             showPhase(phase3);
         });
     
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);
-        prevButton.setLayoutY(120);
-        prevButton.setOnAction(_ -> showPhase(phase1));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);
+        backButton.setLayoutY(120);
+        backButton.setOnAction(_ -> showPhase(phase1));
     
         // Προσθήκη στοιχείων στο Phase
-        phase.getChildren().addAll(label, languagesListView, nextButton, prevButton);
+        phase.getChildren().addAll(label, languagesListView, nextButton, backButton);
     
         return phase;
     }
@@ -498,13 +504,13 @@ public class App extends Application {
             showPhase(phase4);
         });
     
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);  // Τοποθέτηση του κουμπιού Previous στη θέση X
-        prevButton.setLayoutY(90); // Τοποθέτηση του κουμπιού Previous στη θέση Y
-        prevButton.setOnAction(_ -> showPhase(phase2));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);  // Τοποθέτηση του κουμπιού Previous στη θέση X
+        backButton.setLayoutY(90); // Τοποθέτηση του κουμπιού Previous στη θέση Y
+        backButton.setOnAction(_ -> showPhase(phase2));
     
         // Προσθήκη στοιχείων στο Phase
-        phase.getChildren().addAll(label, countriesListView, nextButton, prevButton);
+        phase.getChildren().addAll(label, countriesListView, nextButton, backButton);
     
         return phase;
     }
@@ -577,13 +583,13 @@ public class App extends Application {
             }
         });
     
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);  // Τοποθέτηση του κουμπιού Previous στη θέση X
-        prevButton.setLayoutY(45); // Τοποθέτηση του κουμπιού Previous στη θέση Y
-        prevButton.setOnAction(_ -> showPhase(phase3));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);  // Τοποθέτηση του κουμπιού Previous στη θέση X
+        backButton.setLayoutY(45); // Τοποθέτηση του κουμπιού Previous στη θέση Y
+        backButton.setOnAction(_ -> showPhase(phase3));
     
         // Προσθήκη στοιχείων στο Phase
-        phase.getChildren().addAll(label, budgetTextField, errorLabel, nextButton, prevButton);
+        phase.getChildren().addAll(label, budgetTextField, errorLabel, nextButton, backButton);
     
         return phase;
     }
@@ -637,13 +643,13 @@ public class App extends Application {
         nextButton.setLayoutY(5);  // Τοποθέτηση του κουμπιού Next στη θέση Y
         nextButton.setOnAction(_ -> showPhase(phase6));
     
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);   // Τοποθέτηση του κουμπιού Previous στη θέση X
-        prevButton.setLayoutY(5);  // Τοποθέτηση του κουμπιού Previous στη θέση Y
-        prevButton.setOnAction(_ -> showPhase(phase4));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);   // Τοποθέτηση του κουμπιού Previous στη θέση X
+        backButton.setLayoutY(5);  // Τοποθέτηση του κουμπιού Previous στη θέση Y
+        backButton.setOnAction(_ -> showPhase(phase4));
     
         // Προσθήκη στοιχείων στο Phase
-        phase.getChildren().addAll(label, upButton, downButton, nextButton, prevButton);
+        phase.getChildren().addAll(label, upButton, downButton, nextButton, backButton);
     
         return phase;
     }
@@ -653,41 +659,110 @@ public class App extends Application {
         Pane phase = new Pane();
         phase.setPrefWidth(400);
         phase.setPrefHeight(300);
-
+    
         messageLabel = new Label();
-        messageLabel.setLayoutX(50);  // Τοποθέτηση του label στη θέση X
-        messageLabel.setLayoutY(50);  // Τοποθέτηση του label στη θέση Y
     
         // Λίστα με τα πανεπιστήμια
-        uniMatches = new ListView<>();
+        uniMatches = new ListView<University>();
+
+        uniMatches.setCellFactory(list -> new ListCell<University>() {
+            private final Hyperlink link = new Hyperlink();
+            {
+                link.setOnAction(evt -> {
+                    University u = getItem();
+                    if (u != null && u.getPdfLink() != null && !u.getPdfLink().isEmpty()) {
+                        try {
+                            Desktop.getDesktop().open(new File(u.getPdfLink()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+            @Override
+            protected void updateItem(University item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    link.setText(item.getUniName());
+                    setGraphic(link);
+                    setText(null);
+                }
+            }
+        });
+        
+
         uniMatches.setLayoutX(110);  // Τοποθέτηση του ListView στη θέση X
-        uniMatches.setLayoutY(-200);
-        uniMatches.setPrefSize(175,125);
+        uniMatches.setLayoutY(-250);
+        uniMatches.setPrefSize(250, 150);
+    
         // Κουμπί για την εμφάνιση των αποτελεσμάτων
         Button showMatchesButton = new Button("Results!");
-        showMatchesButton.setLayoutX(150);  // Τοποθέτηση του κουμπιού στη θέση X
+        showMatchesButton.setLayoutX(200);  // Τοποθέτηση του κουμπιού στη θέση X
         showMatchesButton.setLayoutY(-60);  // Τοποθέτηση του κουμπιού στη θέση Y
         showMatchesButton.setOnAction(_ -> {
-            List<String> matches = uniData.letsGoErasmus(user);
-            if (matches.isEmpty()) {
-                messageLabel.setText("There are no universities that match your preferences.");
+
+            Pair<List<University>, List<University>> matches = uniData.letsGoErasmus(user);
+            List<University> firstList = matches.getKey();
+            List<University> secondList = matches.getValue();
+            
+            // Έλεγχος αν υπάρχουν αποτελέσματα
+            if (firstList.isEmpty() && secondList.isEmpty()) {
+                messageLabel.setText("There are no universities that match your preferences 😢");
+                messageLabel.setLayoutX(25);
+                messageLabel.setLayoutY(-125);
+                messageLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+    
+                phase.getChildren().addAll(messageLabel);
             } else {
-                messageLabel.setText("The following universities were found: ");
-                uniMatches.setItems(FXCollections.observableArrayList(matches));
+                // Ελέγχουμε αν υπάρχουν πανεπιστήμια που ταιριάζουν με την περίοδο
+                if (!secondList.isEmpty()) {
+                    Text text1 = new Text("We found some universities that match your preferences");
+                    text1.setLayoutX(50);
+                    text1.setLayoutY(-240);
+    
+                    Text text2 = new Text("but do not match the period you chose:");
+                    text2.setLayoutX(50);
+                    text2.setLayoutY(-225);
+    
+                    // Ενημερώνουμε τη λίστα με τα πανεπιστήμια
+                    uniMatches.setItems(FXCollections.observableArrayList(secondList));
+                    uniMatches.setLayoutX(80);
+                    uniMatches.setLayoutY(-220);
+    
+                    phase.getChildren().addAll(text1, text2, uniMatches);
+    
+                } else {
+                    messageLabel.setText("The following universities were found: ");
+                    messageLabel.setLayoutX(80);
+                    messageLabel.setLayoutY(-250);
+    
+                    // Ενημερώνουμε τη λίστα με τα πανεπιστήμια που ταιριάζουν απόλυτα
+                    uniMatches.setItems(FXCollections.observableArrayList(firstList));
+                    uniMatches.setLayoutX(80);
+                    uniMatches.setLayoutY(-220);
+    
+                    phase.getChildren().addAll(uniMatches, messageLabel);
+                }
             }
+            showMatchesButton.setDisable(true);
+            
         });
     
         // Κουμπί Previous
-        Button prevButton = new Button("Previous");
-        prevButton.setLayoutX(40);   // Τοποθέτηση του κουμπιού Previous στη θέση X
-        prevButton.setLayoutY(-5);  // Τοποθέτηση του κουμπιού Previous στη θέση Y
-        prevButton.setOnAction(_ -> showPhase(phase5));
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);
+        backButton.setLayoutY(-20);
+        backButton.setOnAction(_ -> showPhase(phase5));
     
         // Προσθήκη στοιχείων στο Phase
-        phase.getChildren().addAll(messageLabel, uniMatches, showMatchesButton, prevButton);
+        phase.getChildren().addAll(showMatchesButton, backButton);
     
         return phase;
     }
+    
     
     public static void main(String[] args) {
         launch(args);
