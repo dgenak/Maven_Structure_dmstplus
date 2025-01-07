@@ -3,7 +3,6 @@ package com.dmstplus;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.util.Pair;
 
 public class UniData {
     
@@ -60,6 +59,7 @@ public class UniData {
         universities.add(new University("Sodertorn University", "Sweden", "Kristianstad", 1000, 500.0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Linnaeus_University_Vaxjo.pdf"));
     
         // Λίστα languages που περιέχει όλες τις γλώσσες των συνεργαζόμεων χωρών
+        languages.add(new Languages("English"));
         languages.add(new Languages("French"));
         languages.add(new Languages("Greek"));
         languages.add(new Languages("Danish"));
@@ -125,18 +125,16 @@ public class UniData {
         return costpermonth;
     }
 
-    public Pair<List<University>, List<University>> letsGoErasmus(User user) {
+    public TripleList<List<University>, List<University>, List<University>> letsGoErasmus(User user) {
         // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
         List<University> uni_match = new ArrayList<>();
         List<University> uni_match_p = new ArrayList<>();
+        List<University> uni_match_l = new ArrayList<>();
 
         for (University university : universities) {
             
             boolean is_it_a_match = true;
-            // Εδώ ελέγχουμε αν ο user γνωρίζει τη γλώσσα της συγκεκριμένης χώρας
-            if (!(user.getUserslanguages().contains(university.getCountrysLang()))) {
-                is_it_a_match = false;
-            }
+
 
             // Εδώ ελέγχουμε αν το συγκεκριμένο πανεπιστήμιο βρίσκεται στη χώρα που επιθυμεί ο user
             if (!(user.getPreferredCountry().contains(university.getCountry()))) {
@@ -155,6 +153,19 @@ public class UniData {
                 }
             }
 
+            if ((is_it_a_match) && (user.getUserslanguages().contains("English")) && !(user.getUserslanguages().contains(university.getCountrysLang()))) {
+                if (university.getBestPeriodToVisit().equals(user.getPreferredPeriod())) {
+                    uni_match_l.add(university);
+                }
+            }
+            
+                
+
+            // Εδώ ελέγχουμε αν ο user γνωρίζει τη γλώσσα της συγκεκριμένης χώρας
+            if (!(user.getUserslanguages().contains(university.getCountrysLang()))) {
+                is_it_a_match = false;
+            }
+
             /*
              * Ελέγχουμε αν το getcostWith_Accomondation είναι ίσο με 0 γιατί τότε σημαίνει πως δεν βρήκαμε το μηνιαίο μέσο κόστος 
              * ζωής για εκείνη τη πόλη 
@@ -163,11 +174,12 @@ public class UniData {
             if (is_it_a_match) {
                 if (university.getBestPeriodToVisit().equals(user.getPreferredPeriod())) {
                     uni_match.add(university);
-                } else  {
+                } else {
                     uni_match_p.add(university);
-                }
-            } 
+                } 
+            }        
+            
         }        
-        return new Pair<>(uni_match, uni_match_p);
-    }        
+        return new TripleList<>(uni_match, uni_match_p, uni_match_l);
+    }
 }
