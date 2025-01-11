@@ -1,0 +1,32 @@
+name: Display Past Actions
+
+on:
+  workflow_dispatch: # Ενεργοποιείται χειροκίνητα
+
+jobs:
+  display-history:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Display Last 10 Commits
+        run: |
+          echo "---- Last 10 Commits ----"
+          git log -10 --pretty=format:"%h - %an, %ar : %s"
+
+      - name: Display All Branches
+        run: |
+          echo "---- Branches ----"
+          git branch -a
+
+      - name: Display Changed Files in Last Commit
+        run: |
+          echo "---- Files Changed in Last Commit ----"
+          git diff --name-only HEAD^ HEAD
+
+      - name: Display Repository History
+        run: |
+          echo "---- Repository History ----"
+          git log --oneline --graph --all
