@@ -691,7 +691,25 @@ public class App extends Application {
         backButton.setLayoutY(45);
         backButton.setOnAction(_ -> showPhase(phase3));
 
-        phase.getChildren().addAll(label, budgetTextField, errorLabel, nextButton, backButton);
+        Label infoLabel = new Label("(Answer after checking the monthly grants by country)");
+        infoLabel.setLayoutX(130);
+        infoLabel.setLayoutY(-45);
+        infoLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 11));
+        infoLabel.setStyle("-fx-text-fill: black;");
+
+        Button monthlyGrantButton = new Button("Monthly Grant");
+        monthlyGrantButton.setLayoutX(180);
+        monthlyGrantButton.setLayoutY(-20);
+        monthlyGrantButton.setOnAction(_ -> {
+            try {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI("https://aueb.gr/el/erasmus/mobility/content/plirofories-ana-akadimaiko-etos"));
+            } catch (Exception e) {
+                errorLabel.setText("Failed to open the link. Please try again.");
+                errorLabel.setStyle(" -fx-text-fill: red;");
+            }
+        });
+    
+        phase.getChildren().addAll(label, infoLabel, budgetTextField, errorLabel, nextButton, backButton, monthlyGrantButton);
         return phase;
     }
 

@@ -53,7 +53,7 @@ public class UniData {
         universities.add(new University("Norwegian School of Economics - NHH", "Norway", "Bergen", 1350, 0, "Norwegian", "Winter", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\University_of_Bergen.pdf"));
         universities.add(new University("Instituto Politecnico Da Guarda (IPG)", "Portugal", "Guarda", 600, 0, "Portuguese", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Polytechnic_Institute_of_Guarda.pdf"));
         universities.add(new University("Univerzita Pavla Jozefa Safarika v Kosiciach", "Slovakia", "Kosice", 600, 250.0, "Slovak", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Technical_University_of_Kosice.pdf"));
-        universities.add(new University("Stockholm University - Stockholm Business School", "Sweden", "Stockholm", 1300, 650.0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Stockholm_University.pdf"));   // To Linnaeus University έχει δύο campuses (Växjö, Kalmar). Ενδεικτικά χρησιμοποιούμε την Kalmar έκδοση.
+        universities.add(new University("Stockholm University - Stockholm Business School", "Sweden", "Stockholm", 1300, 650.0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Stockholm_University.pdf"));
         universities.add(new University("Linnaeus University", "Sweden", "Vaxjo", 1000, 500.0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Linnaeus_University_Kalmar.pdf"));
         universities.add(new University("Kristianstad University", "Sweden", "Kalmar", 1000, 0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Kristianstad_University.pdf"));
         universities.add(new University("Sodertorn University", "Sweden", "Kristianstad", 1000, 500.0, "Swedish", "Spring", "C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\UniPDFs\\Linnaeus_University_Vaxjo.pdf"));
@@ -85,14 +85,6 @@ public class UniData {
         countries.add(new Countries("Portugal"));
         countries.add(new Countries("Slovakia"));
         countries.add(new Countries("Sweden"));
-
-        // Λίστα με τις επιλογές του user ως μέγιστο ποσό δαπάνης ανά μήνα
-        costpermonth.add(new CostOfLiving(250.00));
-        costpermonth.add(new CostOfLiving(500.00));
-        costpermonth.add(new CostOfLiving(750.00));
-        costpermonth.add(new CostOfLiving(1000.00));
-        costpermonth.add(new CostOfLiving(1250.00));
-        costpermonth.add(new CostOfLiving(1500.00));
     }
 
 
