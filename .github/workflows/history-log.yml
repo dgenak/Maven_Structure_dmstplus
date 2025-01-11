@@ -1,7 +1,7 @@
 name: Display Past Actions
 
 on:
-  workflow_dispatch: # Ενεργοποιείται χειροκίνητα
+  workflow_dispatch:
 
 jobs:
   display-history:
@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Κατεβάζει ολόκληρο το ιστορικό του repository
 
       - name: Display Last 10 Commits
         run: |
@@ -25,8 +27,3 @@ jobs:
         run: |
           echo "---- Files Changed in Last Commit ----"
           git diff --name-only HEAD^ HEAD
-
-      - name: Display Repository History
-        run: |
-          echo "---- Repository History ----"
-          git log --oneline --graph --all
