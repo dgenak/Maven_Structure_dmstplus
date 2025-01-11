@@ -241,27 +241,27 @@ public class App extends Application {
         Pane phase = createPane();
         phase.setPrefWidth(400);
         phase.setPrefHeight(300);
-
+    
         Text text = new Text("Download PDF:");
         text.setLayoutX(170);
         text.setLayoutY(-4);
-
+    
         Button download = new Button("Create your first CV");
         download.setLayoutX(260);
         download.setLayoutY(-20);
-
+    
         Download pdf = new Download();
         download.setOnAction(_ -> {
-            pdf.downloadPdf("C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\PDF\\CV.pdf");
+            pdf.downloadPdf("C:\\Users\\dim\\Downloads\\CV.pdf");
         });
-
+    
         Button backButton = new Button("Back");
         backButton.setLayoutX(40);
         backButton.setLayoutY(-20);
         backButton.setOnAction(_ -> showPhase(phase0));
-
+    
         ListView<String> listView = new ListView<>();
-
+    
         List<String> textLines = new ArrayList<>();
         textLines.add("HERE ARE SOME RECOMMENDATIONS ON WHAT YOUR RESUME SHOULD CONTAIN:");
         textLines.add("PERSONAL INFORMATION: Name, phone number, email, LinkedIn, GitHub (if available).");
@@ -282,12 +282,12 @@ public class App extends Application {
         textLines.add("CERTIFICATIONS (if any): e.g., TOEFL, technical certifications.");
         textLines.add("VOLUNTEERING (if any): Role, organization, duration.");
         textLines.add("INTERESTS (optional): Relevant to the position.");
-
+    
         listView.getItems().addAll(textLines);
         listView.setPrefSize(390, 200);
         listView.setLayoutX(5);
         listView.setLayoutY(10);
-
+    
         TextFlow textFlow = new TextFlow();
         Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
         text1.setFill(Color.RED);
@@ -305,12 +305,13 @@ public class App extends Application {
         text4.setFill(Color.RED);
         text4.setLayoutX(8);
         text4.setLayoutY(261);
-
+    
         textFlow.getChildren().addAll(text1, text2, text3, text4);
-
-        phase.getChildren().addAll(backButton, text, download, listView, text1, text2, text3, text4);
+    
+        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
         return phase;
     }
+    
 
     /**
      * ERASMUS Information regarding the Application / PHASE
