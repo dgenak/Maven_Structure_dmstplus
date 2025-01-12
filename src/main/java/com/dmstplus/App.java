@@ -245,51 +245,31 @@ public class App extends Application {
         Pane phase = createPane();
         phase.setPrefWidth(400);
         phase.setPrefHeight(300);
-
-        Text text1 = new Text("1. Student Application Form");
-        text1.setLayoutX(20);
-        text1.setLayoutY(30);
-
-        Text text2 = new Text("2. SURNAME Pre-Learning Agreement Form");
-        text2.setLayoutX(20);
-        text2.setLayoutY(80);
-
-        Text text4 = new Text("3. Learning Agreement Studies Erasmus+");
-        text4.setLayoutX(20);
-        text4.setLayoutY(130);
-
-        Text text5 = new Text("4. During the Mobility");
-        text5.setLayoutX(20);
-        text5.setLayoutY(180);
-
-        Button button1 = new Button("Download and Open Form 1");
-        button1.setLayoutX(220);
-        button1.setLayoutY(40);
-        button1.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Student_Application_Form_Outgoing.doc"));
-
-        Button button2 = new Button("Download and Open Form 2");
-        button2.setLayoutX(220);
-        button2.setLayoutY(90);
-        button2.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/SURNAME_PreLearningAgreementForm.xlsx"));
-
-        Button button4 = new Button("Download and Open Form 3");
-        button4.setLayoutX(220);
-        button4.setLayoutY(140);
-        button4.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Learning%20Agreement%20Studies%20Erasmus%2B.docx"));
-
-        Button button5 = new Button("Download and Open Form 4");
-        button5.setLayoutX(220);
-        button5.setLayoutY(190);
-        button5.setOnAction(_ -> downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/During%20the%20Mobility.docx"));
-
-        Button backButton = new Button("Back");
-        backButton.setLayoutX(40);
-        backButton.setLayoutY(250);
-        backButton.setOnAction(_ -> showPhase(phase0));
-
-        phase.getChildren().addAll(text1, text2, text4, text5, button1, button2, button4, button5, backButton);
+    
+        Button button1 = new Button("Download Application Form");
+        button1.setLayoutX(50);
+        button1.setLayoutY(50);
+        button1.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Student_Application_Form_Outgoing.doc"));
+    
+        Button button2 = new Button("Download Learning Agreement (Pre)");
+        button2.setLayoutX(50);
+        button2.setLayoutY(100);
+        button2.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/SURNAME_PreLearningAgreementForm.xlsx"));
+    
+        Button button4 = new Button("Download Learning Agreement (During)");
+        button4.setLayoutX(50);
+        button4.setLayoutY(150);
+        button4.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Learning%20Agreement%20Studies%20Erasmus%2B.docx"));
+    
+        Button button5 = new Button("Download During the Mobility Form");
+        button5.setLayoutX(50);
+        button5.setLayoutY(200);
+        button5.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/During%20the%20Mobility.docx"));
+    
+        phase.getChildren().addAll(button1, button2, button4, button5);
         return phase;
     }
+    
 
 
     /**
@@ -316,7 +296,8 @@ public class App extends Application {
         Download pdf = new Download();
         download.setOnAction(_ -> {
             try {
-                pdf.downloadAndOpen();  // Καλείς τη μέθοδο downloadAndOpen της κλάσης Download
+                // Κατεβάζει και ανοίγει το PDF με συγκεκριμένο path
+                pdf.downloadPdf("C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\PDF\\CV.pdf");
             } catch (Exception e) {
                 System.out.println("Failed to download PDF: " + e.getMessage());
             }
@@ -358,26 +339,21 @@ public class App extends Application {
         TextFlow textFlow = new TextFlow();
         Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
         text1.setFill(Color.RED);
-        text1.setLayoutX(8);
-        text1.setLayoutY(225);
         Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
         text2.setFill(Color.RED);
-        text2.setLayoutX(8);
-        text2.setLayoutY(237);
         Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
         text3.setFill(Color.RED);
-        text3.setLayoutX(8);
-        text3.setLayoutY(249);
         Text text4 = new Text("resume to meet their unique requirements.");
         text4.setFill(Color.RED);
-        text4.setLayoutX(8);
-        text4.setLayoutY(261);
     
         textFlow.getChildren().addAll(text1, text2, text3, text4);
+        textFlow.setLayoutX(8);
+        textFlow.setLayoutY(225);
     
-        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
+        phase.getChildren().addAll(backButton, text, download, listView, textFlow);
         return phase;
     }
+    
     
 
     
