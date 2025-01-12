@@ -48,7 +48,8 @@
 
 ΔΙΑΓΡΑΜΜΑ UML
 
-![UML Diagram](src/main/resources/uml/UMLDiagram.jpg)
+![UML Diagram](https://github.com/dgenak/Maven_Structure_dmstplus/blob/92e3513891351fa5d73eec2f5a60553d91692cb8/src/main/resources/uml/UMLDiagram.png)
+
 
 #ΔΟΜΕΣ ΔΕΔΟΜΕΝΩΝ ΚΑΙ ΑΛΓΟΡΙΘΜΟΙ/ΜΕΘΟΔΟΙ
 
