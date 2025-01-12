@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Desktop;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -229,88 +230,7 @@ public class App extends Application {
         return phase;
     }
 
-    /**
-     * BUILD YOUR CV / PHASE 
-     * 
-     * Φάση που δίνει στον χρήστη οδηγίες και παράδειγμα δημιουργίας ενός CV.
-     * Παρέχεται επίσης η δυνατότητα λήψης ενός προτύπου CV σε μορφή PDF.
-     *
-     * (Ένα Pane που παρέχει χρήσιμες πληροφορίες για τη δημιουργία βιογραφικού.)
-     */
-    private Pane cvHelper() {
-        Pane phase = createPane();
-        phase.setPrefWidth(400);
-        phase.setPrefHeight(300);
-    
-        Text text = new Text("Download PDF:");
-        text.setLayoutX(170);
-        text.setLayoutY(-4);
-    
-        Button download = new Button("Create your first CV");
-        download.setLayoutX(260);
-        download.setLayoutY(-20);
-    
-        Download pdf = new Download();
-        download.setOnAction(_ -> {
-            pdf.downloadPdf("C:\\Users\\dim\\Downloads\\CV.pdf");
-        });
-    
-        Button backButton = new Button("Back");
-        backButton.setLayoutX(40);
-        backButton.setLayoutY(-20);
-        backButton.setOnAction(_ -> showPhase(phase0));
-    
-        ListView<String> listView = new ListView<>();
-    
-        List<String> textLines = new ArrayList<>();
-        textLines.add("HERE ARE SOME RECOMMENDATIONS ON WHAT YOUR RESUME SHOULD CONTAIN:");
-        textLines.add("PERSONAL INFORMATION: Name, phone number, email, LinkedIn, GitHub (if available).");
-        textLines.add("SUMMARY (Optional): A brief description of your goals and professional profile.");
-        textLines.add("EDUCATION:");
-        textLines.add(" • Degree title.");
-        textLines.add(" • University and country.");
-        textLines.add(" • Timeframe (e.g., 2020-2024).");
-        textLines.add(" • GPA (if high).");
-        textLines.add("WORK EXPERIENCE:");
-        textLines.add(" • Job title, company, location.");
-        textLines.add(" • Duration (e.g., Jan 2023 – Jun 2023).");
-        textLines.add(" • Brief description of responsibilities and achievements.");
-        textLines.add("SKILLS:");
-        textLines.add(" • Technical skills (e.g., programming languages, software).");
-        textLines.add(" • Soft skills (e.g., teamwork, communication).");
-        textLines.add("LANGUAGES: Proficiency level (e.g., English: Fluent, Greek: Native).");
-        textLines.add("CERTIFICATIONS (if any): e.g., TOEFL, technical certifications.");
-        textLines.add("VOLUNTEERING (if any): Role, organization, duration.");
-        textLines.add("INTERESTS (optional): Relevant to the position.");
-    
-        listView.getItems().addAll(textLines);
-        listView.setPrefSize(390, 200);
-        listView.setLayoutX(5);
-        listView.setLayoutY(10);
-    
-        TextFlow textFlow = new TextFlow();
-        Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
-        text1.setFill(Color.RED);
-        text1.setLayoutX(8);
-        text1.setLayoutY(225);
-        Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
-        text2.setFill(Color.RED);
-        text2.setLayoutX(8);
-        text2.setLayoutY(237);
-        Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
-        text3.setFill(Color.RED);
-        text3.setLayoutX(8);
-        text3.setLayoutY(249);
-        Text text4 = new Text("resume to meet their unique requirements.");
-        text4.setFill(Color.RED);
-        text4.setLayoutX(8);
-        text4.setLayoutY(261);
-    
-        textFlow.getChildren().addAll(text1, text2, text3, text4);
-    
-        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
-        return phase;
-    }
+
     
 
     /**
@@ -371,6 +291,96 @@ public class App extends Application {
         return phase;
     }
 
+
+    /**
+     * BUILD YOUR CV / PHASE 
+     * 
+     * Φάση που δίνει στον χρήστη οδηγίες και παράδειγμα δημιουργίας ενός CV.
+     * Παρέχεται επίσης η δυνατότητα λήψης ενός προτύπου CV σε μορφή PDF.
+     *
+     * (Ένα Pane που παρέχει χρήσιμες πληροφορίες για τη δημιουργία βιογραφικού.)
+     */
+    private Pane cvHelper() {
+        Pane phase = createPane();
+        phase.setPrefWidth(400);
+        phase.setPrefHeight(300);
+    
+        Text text = new Text("Download PDF:");
+        text.setLayoutX(170);
+        text.setLayoutY(-4);
+    
+        Button download = new Button("Create your first CV");
+        download.setLayoutX(260);
+        download.setLayoutY(-20);
+    
+        Download pdf = new Download();
+        download.setOnAction(_ -> {
+            try {
+                pdf.downloadAndOpen();  // Καλείς τη μέθοδο downloadAndOpen της κλάσης Download
+            } catch (Exception e) {
+                System.out.println("Failed to download PDF: " + e.getMessage());
+            }
+        });
+    
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);
+        backButton.setLayoutY(-20);
+        backButton.setOnAction(_ -> showPhase(phase0));
+    
+        ListView<String> listView = new ListView<>();
+    
+        List<String> textLines = new ArrayList<>();
+        textLines.add("HERE ARE SOME RECOMMENDATIONS ON WHAT YOUR RESUME SHOULD CONTAIN:");
+        textLines.add("PERSONAL INFORMATION: Name, phone number, email, LinkedIn, GitHub (if available).");
+        textLines.add("SUMMARY (Optional): A brief description of your goals and professional profile.");
+        textLines.add("EDUCATION:");
+        textLines.add(" • Degree title.");
+        textLines.add(" • University and country.");
+        textLines.add(" • Timeframe (e.g., 2020-2024).");
+        textLines.add(" • GPA (if high).");
+        textLines.add("WORK EXPERIENCE:");
+        textLines.add(" • Job title, company, location.");
+        textLines.add(" • Duration (e.g., Jan 2023 – Jun 2023).");
+        textLines.add(" • Brief description of responsibilities and achievements.");
+        textLines.add("SKILLS:");
+        textLines.add(" • Technical skills (e.g., programming languages, software).");
+        textLines.add(" • Soft skills (e.g., teamwork, communication).");
+        textLines.add("LANGUAGES: Proficiency level (e.g., English: Fluent, Greek: Native).");
+        textLines.add("CERTIFICATIONS (if any): e.g., TOEFL, technical certifications.");
+        textLines.add("VOLUNTEERING (if any): Role, organization, duration.");
+        textLines.add("INTERESTS (optional): Relevant to the position.");
+    
+        listView.getItems().addAll(textLines);
+        listView.setPrefSize(390, 200);
+        listView.setLayoutX(5);
+        listView.setLayoutY(10);
+    
+        TextFlow textFlow = new TextFlow();
+        Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
+        text1.setFill(Color.RED);
+        text1.setLayoutX(8);
+        text1.setLayoutY(225);
+        Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
+        text2.setFill(Color.RED);
+        text2.setLayoutX(8);
+        text2.setLayoutY(237);
+        Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
+        text3.setFill(Color.RED);
+        text3.setLayoutX(8);
+        text3.setLayoutY(249);
+        Text text4 = new Text("resume to meet their unique requirements.");
+        text4.setFill(Color.RED);
+        text4.setLayoutX(8);
+        text4.setLayoutY(261);
+    
+        textFlow.getChildren().addAll(text1, text2, text3, text4);
+    
+        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
+        return phase;
+    }
+    
+
+    
     /**
      * Κατεβάζει και ανοίγει το αρχείο που βρίσκεται στη διεύθυνση fileUrl,
      * αποθηκεύοντάς το στους Downloads του τρέχοντος χρήστη.
@@ -380,33 +390,40 @@ public class App extends Application {
      */
     private void downloadAndOpen(String fileUrl) {
         try {
-            URL url = new URL(fileUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-
+            // Διαδρομή πόρου
+            InputStream resourceStream = getClass().getResourceAsStream("/PDF/CV.pdf");
+            if (resourceStream == null) {
+                throw new IOException("Resource not found: /PDF/CV.pdf");
+            }
+    
+            // Διαδρομή προορισμού (Downloads)
             String userHome = System.getProperty("user.home");
-            String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-            Path destinationPath = Path.of(userHome, "Downloads", fileName);
-
-            try (InputStream in = connection.getInputStream();
-                 OutputStream out = new FileOutputStream(destinationPath.toFile())) {
+            Path destinationPath = Path.of(userHome, "Downloads", "CV.pdf");
+    
+            // Αντιγραφή από τους πόρους στο φάκελο Downloads
+            try (OutputStream out = new FileOutputStream(destinationPath.toFile())) {
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-                while ((bytesRead = in.read(buffer)) != -1) {
+                while ((bytesRead = resourceStream.read(buffer)) != -1) {
                     out.write(buffer, 0, bytesRead);
                 }
-                if (Desktop.isDesktopSupported()) {
-                    Desktop.getDesktop().open(destinationPath.toFile());
-                }
-                System.out.println("File downloaded and opened successfully.");
+                System.out.println("File copied successfully to: " + destinationPath);
+            }
+    
+            // Άνοιγμα του αρχείου αν είναι δυνατό
+            if (Desktop.isDesktopSupported() && Files.exists(destinationPath)) {
+                Desktop.getDesktop().open(destinationPath.toFile());
+                System.out.println("File opened successfully.");
+            } else {
+                System.out.println("Cannot open the file. Desktop is not supported or file is missing.");
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("An error occurred while downloading or opening the file.");
+            System.out.println("An error occurred while copying or opening the file.");
         }
     }
+    
+    
 
     /**
      * PHASE 1
