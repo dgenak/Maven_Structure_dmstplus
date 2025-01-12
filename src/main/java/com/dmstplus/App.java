@@ -345,12 +345,9 @@ public class App extends Application {
         text3.setFill(Color.RED);
         Text text4 = new Text("resume to meet their unique requirements.");
         text4.setFill(Color.RED);
+
     
-        textFlow.getChildren().addAll(text1, text2, text3, text4);
-        textFlow.setLayoutX(8);
-        textFlow.setLayoutY(225);
-    
-        phase.getChildren().addAll(backButton, text, download, listView, textFlow);
+        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
         return phase;
     }
     
