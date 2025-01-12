@@ -8,3 +8,5 @@
   Ανοίξτε το τερματικό Cygwin και πηγαίνετε στον φάκελο του έργου (Maven_Structure_dmstplus) μέσω της εντολής: 
          cd /cygdrive/c/Users/dim/JAVA/prog_II_project/Maven_Structure_dmstplus
 ΒΗΜΑ 2 
+
+![UML Diagram](src/main/resources/uml/UMLDiagram.jpg)
