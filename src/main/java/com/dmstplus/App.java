@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2024-2025 DMSTPLUS
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.dmstplus;
 
 import javafx.application.Application;
@@ -247,26 +263,47 @@ public class App extends Application {
         phase.setPrefHeight(300);
     
         Button button1 = new Button("Download Application Form");
-        button1.setLayoutX(50);
+        button1.setLayoutX(85);
         button1.setLayoutY(50);
         button1.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Student_Application_Form_Outgoing.doc"));
     
         Button button2 = new Button("Download Learning Agreement (Pre)");
-        button2.setLayoutX(50);
+        button2.setLayoutX(85);
         button2.setLayoutY(100);
         button2.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/SURNAME_PreLearningAgreementForm.xlsx"));
     
         Button button4 = new Button("Download Learning Agreement (During)");
-        button4.setLayoutX(50);
+        button4.setLayoutX(85);
         button4.setLayoutY(150);
         button4.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/Learning%20Agreement%20Studies%20Erasmus%2B.docx"));
     
         Button button5 = new Button("Download During the Mobility Form");
-        button5.setLayoutX(50);
+        button5.setLayoutX(85);
         button5.setLayoutY(200);
         button5.setOnAction(_ -> new Download().downloadAndOpen("https://www.dept.aueb.gr/sites/default/files/dmst/erasmus/During%20the%20Mobility.docx"));
     
-        phase.getChildren().addAll(button1, button2, button4, button5);
+        Button backButton = new Button("Back");
+        backButton.setLayoutX(40);
+        backButton.setLayoutY(250);
+        backButton.setOnAction(_ -> showPhase(phase0));
+
+        Text text1 = new Text("1.");
+        text1.setX(60);
+        text1.setY(65);
+
+        Text text2 = new Text("2.");
+        text2.setX(60);
+        text2.setY(115);
+
+        Text text3 = new Text("3.");
+        text3.setX(60);
+        text3.setY(165);
+
+        Text text4 = new Text("4.");
+        text4.setX(60);
+        text4.setY(215);
+
+        phase.getChildren().addAll(button1, button2, button4, button5, backButton, text1, text2, text3, text4);
         return phase;
     }
     
@@ -336,18 +373,28 @@ public class App extends Application {
         listView.setLayoutX(5);
         listView.setLayoutY(10);
     
-        TextFlow textFlow = new TextFlow();
         Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
         text1.setFill(Color.RED);
+        text1.setX(10);
+        text1.setY(220);
+
         Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
         text2.setFill(Color.RED);
+        text2.setX(10);
+        text2.setY(235);
+
         Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
         text3.setFill(Color.RED);
+        text3.setX(10);
+        text3.setY(250);
+
         Text text4 = new Text("resume to meet their unique requirements.");
         text4.setFill(Color.RED);
+        text4.setX(10);
+        text4.setY(265);
 
     
-        phase.getChildren().addAll(backButton, text, download, listView, textFlow, text1, text2, text3, text4);
+        phase.getChildren().addAll(backButton, text, download, listView, text1, text2, text3, text4);
         return phase;
     }
     
@@ -411,7 +458,7 @@ public class App extends Application {
         phase.setPrefWidth(400);
         phase.setPrefHeight(300);
 
-        Label label = new Label("Choose which period you prefer:");
+        Label label = new Label("Choose which semester you prefer:");
         label.setLayoutX(80);
         label.setLayoutY(0);
         label.setFont(Font.font("Arial", FontWeight.BOLD, 15));
@@ -465,7 +512,7 @@ public class App extends Application {
         phase.setPrefWidth(400);
         phase.setPrefHeight(300);
 
-        Label label = new Label("Choose the languages ​​you know:");
+        Label label = new Label("Choose the languages ​​you speak:");
         label.setLayoutX(140);
         label.setLayoutY(-70);
         label.setFont(Font.font("Arial", FontWeight.BOLD, 15));
@@ -645,7 +692,7 @@ public class App extends Application {
 
         phase.getChildren().addAll(backgroundCircle, imageView);
 
-        Label label = new Label("Write the amount you are willing to spend monthly:");
+        Label label = new Label("Write your monthly budget:");
         label.setLayoutX(120);
         label.setLayoutY(-140);
         label.setFont(Font.font("Arial", FontWeight.BOLD, 11.4));
