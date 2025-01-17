@@ -171,11 +171,6 @@ public class UniData {
             if (!(user.getUserslanguages().contains(university.getCountrysLang()))) {
                 is_it_a_match = false;
             }
-
-            /*
-             * Ελέγχουμε αν το getcostWith_Accomondation είναι ίσο με 0 γιατί τότε σημαίνει πως δεν βρήκαμε το μηνιαίο μέσο κόστος 
-             * ζωής για εκείνη τη πόλη 
-             */
             // Τέλος αν το πανεπιστήμιο πληρεί τις προϋποθέσεις του user τότε το αποθηκεύουμε στη λίστα uni_match
             if (is_it_a_match) {
                 if (university.getBestPeriodToVisit().equals(user.getPreferredPeriod())) {
