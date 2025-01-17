@@ -30,7 +30,7 @@
   
   Εντολή 3:   
   
-    java --module-path "C:\Users\dim\JAVA\JavaFX\openjfx-23.0.1_windows-x64_bin-sdk\javafx-sdk-23.0.1\lib" --add-               modules javafx.controls,javafx.fxml -jar target/dmstplus-1.0-SNAPSHOT.jar
+    java --module-path "C:\Users\dim\JAVA\JavaFX\openjfx-23.0.1_windows-x64_bin-sdk\javafx-sdk-23.0.1\lib" --add-modules javafx.controls,javafx.fxml -jar target/dmstplus-1.0-SNAPSHOT.jar
 
 # ΟΔΗΓΙΕΣ ΧΡΗΣΗΣ ΤΟΥ ΠΡΟΓΡΑΜΜΑΤΟΣ
 
