@@ -162,9 +162,7 @@ public class UniData {
             }
 
             if ((is_it_a_match) && (user.getUserslanguages().contains("English")) && !(user.getUserslanguages().contains(university.getCountrysLang()))) {
-                if (university.getBestPeriodToVisit().equals(user.getPreferredPeriod())) {
                     uni_match_l.add(university);
-                }
             }
             
                 
