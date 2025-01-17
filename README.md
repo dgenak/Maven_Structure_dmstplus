@@ -1,5 +1,5 @@
 # DMSTPLUS
-  Η εφαρμογή dmstplus είναι μια εφαρμογή που υποστηρίζει φοιτητές του τμήματος Διοικητικής Επιστήμης και Τεχνολογίας (DMST) 
+  Η εφαρμογή DMSTPLUS είναι μια εφαρμογή που υποστηρίζει φοιτητές του τμήματος Διοικητικής Επιστήμης και Τεχνολογίας (DMST) 
   που επιθυμούν να συμμετάσχουν στο πρόγραμμα Erasmus. Ο κύριος στόχος της είναι να διευκολύνει τη διαδικασία επιλογής πανεπιστημίων, 
   δημιουργίας βιογραφικού και υποβολής αίτησης.
 
@@ -201,6 +201,63 @@ classDiagram
   την περίοδο και στην τρίτη λίστα εκχωρούνται τα πανεπιστήμια που ταιριάζουν με τις προτιμήσεις του χρήστη και ο χρήστης
   γνωρίζει αγγλικά και όχι την γλώσσα της συγκεκριμένης χώρας. Οι λίστες αυτές δημιουργήθηκαν για να απλοποιηθεί η
   διαδικασία ταξινόμησεις των πανεπιστημίων.
+
+  ### Μέθοδος: letsGoErasmus
+
+  ```java
+
+public TripleList<List<University>, List<University>, List<University>> letsGoErasmus(User user) {
+        // Στη λίστα uni_match θα αποθηκεύονται τα πανεπιστήμια που ταιριάζουν με κάθε user
+        List<University> uni_match = new ArrayList<>();
+        List<University> uni_match_p = new ArrayList<>();
+        List<University> uni_match_l = new ArrayList<>();
+
+        for (University university : universities) {
+            
+            boolean is_it_a_match = true;
+
+
+            // Εδώ ελέγχουμε αν το συγκεκριμένο πανεπιστήμιο βρίσκεται στη χώρα που επιθυμεί ο user
+            if (!(user.getPreferredCountry().contains(university.getCountry()))) {
+                is_it_a_match = false;
+            }
+
+            if (user.getSharedAccomondation()) {
+                // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής (με συγκατοίκηση) της συγκεκριμένης πόλης 
+                if ((university.getCostWithSh_Accomondation() == 0.0) || (user.getMaxMonthlyCost() < university.getCostWithSh_Accomondation())) {
+                    is_it_a_match = false;
+                }
+            } else {
+                // Εδώ ελέγχουμε αν διατίθεται ο user να δαπανά το μηνιαίο μέσο κόστος ζωής της συγκεκριμένης πόλης 
+                if (user.getMaxMonthlyCost() < university.getMonthlyCost()) {
+                    is_it_a_match = false;
+                }
+            }
+
+            if ((is_it_a_match) && (user.getUserslanguages().contains("English")) && !(user.getUserslanguages().contains(university.getCountrysLang()))) {
+                    uni_match_l.add(university);
+            }
+            
+                
+
+            // Εδώ ελέγχουμε αν ο user γνωρίζει τη γλώσσα της συγκεκριμένης χώρας
+            if (!(user.getUserslanguages().contains(university.getCountrysLang()))) {
+                is_it_a_match = false;
+            }
+            // Τέλος αν το πανεπιστήμιο πληρεί τις προϋποθέσεις του user τότε το αποθηκεύουμε στη λίστα uni_match
+            if (is_it_a_match) {
+                if (university.getBestPeriodToVisit().equals(user.getPreferredPeriod())) {
+                    uni_match.add(university);
+                } else {
+                    uni_match_p.add(university);
+                } 
+            }        
+            
+        }        
+        return new TripleList<>(uni_match, uni_match_p, uni_match_l);
+    }
+  
+  ```
 
 # ΑΔΕΙΑ ΑΝΟΙΚΤΟΥ ΚΩΔΙΚΑ:
 
