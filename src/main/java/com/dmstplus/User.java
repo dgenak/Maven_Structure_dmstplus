@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// Η κλάση αυτή με τον κατασκευαστή αντιπροσοπεύουν τις προτιμήσεις του χρήστη
+
 package com.dmstplus;
 
 import java.util.List;
@@ -33,6 +35,8 @@ public class User {
         this.maxMonthlyCost = 0.0;
         this.sharedAccomondation = false;
     }
+
+    //Μέθοδοι get και set για κάθε μια προτίμηση του χρήστη
     
     public List<String> getUserslanguages() {
         return userslanguages;

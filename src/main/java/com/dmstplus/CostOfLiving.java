@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// Η κλάση αυτή δημιουργήθηκε για την δήλωση των δυο μεθόδων που θα συντελέσουν στην πρόσβαση δυο μεταβλητών: CostOfLiving, getAmount
+
 package com.dmstplus;
 
 public class CostOfLiving {

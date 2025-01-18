@@ -41,7 +41,7 @@ public class University {
         this.countrysLang = countrysLang;
         this.pdfLink = pdfLink;
     }
-    // Εδώ πρέπει να γίνουν μέθοδοι GET για κάθε όρισμα του κατασκευαστή
+    // Εδώ είναι οι μέθοδοι GET για κάθε όρισμα του κατασκευαστή
     public String getUniName() {
         return uniName;
     }
