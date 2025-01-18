@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// Η κλάση αυτή δημιουργήθηκε για να μας επιτρέψει στην μέθοδο letsGoErasmus να επιστρέψουμε τρείς λίστες ως αποτέλεσμα
+
 package com.dmstplus;
 
 public class TripleList<T, U, V> {
