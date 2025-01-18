@@ -47,6 +47,8 @@
                     <release>23</release>
                 </configuration>
             </plugin>
+
+            <!-- JavaFX Maven plugin for running JavaFX applications -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -55,6 +57,8 @@
                     <mainClass>com.dmstplus.App</mainClass>
                 </configuration>
             </plugin>
+
+            <!-- Javadoc plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -63,6 +67,8 @@
                     <destDir>${project.basedir}/docs/javadoc</destDir>
                 </configuration>
             </plugin>
+
+            <!-- Maven JAR plugin for generating the JAR file -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -75,6 +81,8 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- Shade plugin to package everything into a single JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -96,6 +104,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Maven exec plugin to run the application -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

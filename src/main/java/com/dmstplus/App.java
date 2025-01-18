@@ -47,7 +47,11 @@
  import java.net.URL;
  import java.nio.file.Files;
  import java.nio.file.Path;
- 
+ import java.net.URISyntaxException;
+ import java.awt.Desktop;
+ import java.io.File;
+ import java.io.IOException;
+ import java.net.URISyntaxException;
  /**
   * Η κλάση App είναι η κύρια κλάση της εφαρμογής DMST+ Erasmus.
   * Επεκτείνει την κλάση Application (JavaFX) και είναι υπεύθυνη
@@ -318,132 +322,100 @@
       * (Ένα Pane που παρέχει χρήσιμες πληροφορίες για τη δημιουργία βιογραφικού.)
       */
      private Pane cvHelper() {
-         Pane phase = createPane();
-         phase.setPrefWidth(400);
-         phase.setPrefHeight(300);
-     
-         Text text = new Text("Download PDF:");
-         text.setLayoutX(170);
-         text.setLayoutY(-4);
-     
-         Button download = new Button("Create your first CV");
-         download.setLayoutX(260);
-         download.setLayoutY(-20);
-     
-         Download pdf = new Download();
-         download.setOnAction(_ -> {
-             try {
-                 // Κατεβάζει και ανοίγει το PDF με συγκεκριμένο path
-                 pdf.downloadPdf("C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\PDF\\CV.pdf");
-             } catch (Exception e) {
-                 System.out.println("Failed to download PDF: " + e.getMessage());
-             }
-         });
-     
-         Button backButton = new Button("Back");
-         backButton.setLayoutX(40);
-         backButton.setLayoutY(-20);
-         backButton.setOnAction(_ -> showPhase(phase0));
-     
-         ListView<String> listView = new ListView<>();
-     
-         List<String> textLines = new ArrayList<>();
-         textLines.add("HERE ARE SOME RECOMMENDATIONS ON WHAT YOUR RESUME SHOULD CONTAIN:");
-         textLines.add("PERSONAL INFORMATION: Name, phone number, email, LinkedIn, GitHub (if available).");
-         textLines.add("SUMMARY (Optional): A brief description of your goals and professional profile.");
-         textLines.add("EDUCATION:");
-         textLines.add(" • Degree title.");
-         textLines.add(" • University and country.");
-         textLines.add(" • Timeframe (e.g., 2020-2024).");
-         textLines.add(" • GPA (if high).");
-         textLines.add("WORK EXPERIENCE:");
-         textLines.add(" • Job title, company, location.");
-         textLines.add(" • Duration (e.g., Jan 2023 – Jun 2023).");
-         textLines.add(" • Brief description of responsibilities and achievements.");
-         textLines.add("SKILLS:");
-         textLines.add(" • Technical skills (e.g., programming languages, software).");
-         textLines.add(" • Soft skills (e.g., teamwork, communication).");
-         textLines.add("LANGUAGES: Proficiency level (e.g., English: Fluent, Greek: Native).");
-         textLines.add("CERTIFICATIONS (if any): e.g., TOEFL, technical certifications.");
-         textLines.add("VOLUNTEERING (if any): Role, organization, duration.");
-         textLines.add("INTERESTS (optional): Relevant to the position.");
-     
-         listView.getItems().addAll(textLines);
-         listView.setPrefSize(390, 200);
-         listView.setLayoutX(5);
-         listView.setLayoutY(10);
-     
-         Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
-         text1.setFill(Color.RED);
-         text1.setX(10);
-         text1.setY(220);
- 
-         Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
-         text2.setFill(Color.RED);
-         text2.setX(10);
-         text2.setY(235);
- 
-         Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
-         text3.setFill(Color.RED);
-         text3.setX(10);
-         text3.setY(250);
- 
-         Text text4 = new Text("resume to meet their unique requirements.");
-         text4.setFill(Color.RED);
-         text4.setX(10);
-         text4.setY(265);
- 
-     
-         phase.getChildren().addAll(backButton, text, download, listView, text1, text2, text3, text4);
-         return phase;
-     }
-     
-     
- 
-     
-     /**
-      * Κατεβάζει και ανοίγει το αρχείο που βρίσκεται στη διεύθυνση fileUrl,
-      * αποθηκεύοντάς το στους Downloads του τρέχοντος χρήστη.
-      * Χρησιμοποιεί HttpURLConnection για το κατέβασμα και την κλάση Desktop για το άνοιγμα.
-      *
-      * (Ανοίγει το URL από το οποίο θα κατέβει το αρχείο.)
-      */
-     private void downloadAndOpen(String fileUrl) {
-         try {
-             // Διαδρομή πόρου
-             InputStream resourceStream = getClass().getResourceAsStream("/PDF/CV.pdf");
-             if (resourceStream == null) {
-                 throw new IOException("Resource not found: /PDF/CV.pdf");
-             }
-     
-             // Διαδρομή προορισμού (Downloads)
-             String userHome = System.getProperty("user.home");
-             Path destinationPath = Path.of(userHome, "Downloads", "CV.pdf");
-     
-             // Αντιγραφή από τους πόρους στο φάκελο Downloads
-             try (OutputStream out = new FileOutputStream(destinationPath.toFile())) {
-                 byte[] buffer = new byte[1024];
-                 int bytesRead;
-                 while ((bytesRead = resourceStream.read(buffer)) != -1) {
-                     out.write(buffer, 0, bytesRead);
-                 }
-                 System.out.println("File copied successfully to: " + destinationPath);
-             }
-     
-             // Άνοιγμα του αρχείου αν είναι δυνατό
-             if (Desktop.isDesktopSupported() && Files.exists(destinationPath)) {
-                 Desktop.getDesktop().open(destinationPath.toFile());
-                 System.out.println("File opened successfully.");
-             } else {
-                 System.out.println("Cannot open the file. Desktop is not supported or file is missing.");
-             }
-         } catch (IOException e) {
-             e.printStackTrace();
-             System.out.println("An error occurred while copying or opening the file.");
-         }
-     }
-     
-     
+            Pane phase = createPane();
+            phase.setPrefWidth(400);
+            phase.setPrefHeight(300);
+        
+            Text text = new Text("Download PDF:");
+            text.setLayoutX(170);
+            text.setLayoutY(-4);
+        
+            Button download = new Button("Create your first CV");
+            download.setLayoutX(260);
+            download.setLayoutY(-20);
+
+            Download pdf = new Download();
+            download.setOnAction(_ -> {
+                try {
+                    // Λήψη του URL του αρχείου PDF από τον φάκελο resources
+                    URL resource = getClass().getResource("/PDF/CV.pdf");
+                    
+                    // Ελέγξτε αν το αρχείο υπάρχει στον φάκελο resources
+                    if (resource != null) {
+                        File pdfFile = new File(resource.toURI());
+
+                        // Ελέγχει αν υπάρχει κάποια εφαρμογή που να μπορεί να ανοίξει το αρχείο
+                        if (Desktop.isDesktopSupported()) {
+                            Desktop desktop = Desktop.getDesktop();
+                            desktop.open(pdfFile); // Ανοίγει το PDF με την προεπιλεγμένη εφαρμογή
+                        } else {
+                            System.out.println("Desktop is not supported on this system.");
+                        }
+                    } else {
+                        System.out.println("PDF file not found in resources.");
+                    }
+                } catch (URISyntaxException | IOException e) {
+                    System.out.println("Failed to open PDF: " + e.getMessage());
+                }
+            });
+        
+            Button backButton = new Button("Back");
+            backButton.setLayoutX(40);
+            backButton.setLayoutY(-20);
+            backButton.setOnAction(_ -> showPhase(phase0));
+        
+            ListView<String> listView = new ListView<>();
+        
+            List<String> textLines = new ArrayList<>();
+            textLines.add("HERE ARE SOME RECOMMENDATIONS ON WHAT YOUR RESUME SHOULD CONTAIN:");
+            textLines.add("PERSONAL INFORMATION: Name, phone number, email, LinkedIn, GitHub (if available).");
+            textLines.add("SUMMARY (Optional): A brief description of your goals and professional profile.");
+            textLines.add("EDUCATION:");
+            textLines.add(" • Degree title.");
+            textLines.add(" • University and country.");
+            textLines.add(" • Timeframe (e.g., 2020-2024).");
+            textLines.add(" • GPA (if high).");
+            textLines.add("WORK EXPERIENCE:");
+            textLines.add(" • Job title, company, location.");
+            textLines.add(" • Duration (e.g., Jan 2023 – Jun 2023).");
+            textLines.add(" • Brief description of responsibilities and achievements.");
+            textLines.add("SKILLS:");
+            textLines.add(" • Technical skills (e.g., programming languages, software).");
+            textLines.add(" • Soft skills (e.g., teamwork, communication).");
+            textLines.add("LANGUAGES: Proficiency level (e.g., English: Fluent, Greek: Native).");
+            textLines.add("CERTIFICATIONS (if any): e.g., TOEFL, technical certifications.");
+            textLines.add("VOLUNTEERING (if any): Role, organization, duration.");
+            textLines.add("INTERESTS (optional): Relevant to the position.");
+        
+            listView.getItems().addAll(textLines);
+            listView.setPrefSize(390, 200);
+            listView.setLayoutX(5);
+            listView.setLayoutY(10);
+        
+            Text text1 = new Text("DISCLAIMER: The suggestions provided are based on our personal ");
+            text1.setFill(Color.RED);
+            text1.setX(10);
+            text1.setY(220);
+    
+            Text text2 = new Text("perspective and are not a definitive guide to creating a perfect resume.");
+            text2.setFill(Color.RED);
+            text2.setX(10);
+            text2.setY(235);
+    
+            Text text3 = new Text("Each candidate should take the initiative to research and adapt their ");
+            text3.setFill(Color.RED);
+            text3.setX(10);
+            text3.setY(250);
+    
+            Text text4 = new Text("resume to meet their unique requirements.");
+            text4.setFill(Color.RED);
+            text4.setX(10);
+            text4.setY(265);
+    
+        
+            phase.getChildren().addAll(backButton, text, download, listView, text1, text2, text3, text4);
+            return phase;
+        }     
  
      /**
       * PHASE 1
@@ -527,7 +499,7 @@
          backgroundCircle.setCenterX(0);
          backgroundCircle.setCenterY(-10);
  
-         Image phase2Image = new Image("file:C:\\Users\\dim\\JAVA\\prog_II_project\\Maven_Structure_dmstplus\\src\\main\\resources\\photos\\phase2.jpg");
+         Image phase2Image = new Image(getClass().getResource("/photos/phase2.jpg").toExternalForm());
 
          ImageView imageView = new ImageView(phase2Image);
          imageView.setFitWidth(80);

@@ -44,6 +44,26 @@
          }
      }
  
+     public void openPdfFromStream(InputStream pdfStream) {
+        String userHome = System.getProperty("user.home");
+        Path destinationPath = Path.of(userHome, "Downloads", "CV_from_stream.pdf");
+
+        try {
+            // Αντιγράφει το περιεχόμενο του InputStream στο τοπικό αρχείο
+            Files.copy(pdfStream, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File downloaded successfully to: " + destinationPath.toString());
+
+            // Άνοιγμα του PDF μέσω του προγράμματος προβολής
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(destinationPath.toFile());
+                System.out.println("File opened successfully.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("An error occurred while downloading or opening the file.");
+        }
+    }
+
      /**
       * Κατεβάζει και ανοίγει το αρχείο από URL.
       * @param fileUrl Το URL του αρχείου που θα κατέβει.
